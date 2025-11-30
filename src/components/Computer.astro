@@ -1,0 +1,22 @@
+---
+import Shortcut from "./Shortcuts";
+import Window from "./Window.tsx";
+import "../styles/computer.css";
+---
+
+<div class="desktop">
+
+  <Shortcut label="Laboratorio" icon="/src/assets/icons/discord.svg" target="#win-lab" x={20} y={20} client:load/>
+  <Shortcut label="Sketches" icon="/src/assets/icons/discord.svg" target="#win-sketches" x={20} y={120} client:load/>
+
+  <Window id="win-lab" title="Laboratorio" client:load>
+      <h2>Sección del laboratorio</h2>
+      <p>Contenido...</p>
+  </Window>
+
+  <Window id="win-sketches" title="Sketches" client:load>
+      <h2>Mis bocetos</h2>
+      <p>Contenido de sketches...</p>
+  </Window>
+
+</div>

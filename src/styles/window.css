@@ -1,0 +1,49 @@
+.window {
+    width: 420px;
+    height: 320px;
+    background: #e0e0e0;
+    border: 2px solid #3a3a3a;
+    position: absolute;
+    top: 120px;
+    left: 120px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 3px 0 #000;
+    z-index: 1;
+}
+
+.window.hidden { display: none; }
+
+.titlebar {
+    background: #005aa0;
+    color: white;
+    padding: 6px 8px;
+    cursor: grab;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.titlebar:active { cursor: grabbing; }
+
+.controls button {
+    margin-left: 6px;
+    background: #d33;
+    border: none;
+    color: white;
+    padding: 2px 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.controls .min-btn {
+    background: #777;
+}
+
+.content {
+    padding: 10px;
+    height: calc(100% - 36px);
+    overflow-y: auto;
+}
