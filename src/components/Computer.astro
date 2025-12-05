@@ -1,22 +1,19 @@
 ---
 import Shortcut from "./Shortcuts";
-import Window from "./Window.tsx";
+import Window from "./Window";
 import "../styles/computer.css";
+import { windowsConfig } from "../configs/windows";
+import NavBar from '../components/NavBar.astro';
 ---
-
 <div class="desktop">
+    <NavBar/>
+    {windowsConfig.map(win => (
+      <Shortcut label={win.label} icon={win.icon} target={`#${win.id}`} x={win.x} y={win.y} client:load/>
+    ))}
 
-  <Shortcut label="Laboratorio" icon="/src/assets/icons/discord.svg" target="#win-lab" x={20} y={20} client:load/>
-  <Shortcut label="Sketches" icon="/src/assets/icons/discord.svg" target="#win-sketches" x={20} y={120} client:load/>
-
-  <Window id="win-lab" title="Laboratorio" client:load>
-      <h2>Sección del laboratorio</h2>
-      <p>Contenido...</p>
-  </Window>
-
-  <Window id="win-sketches" title="Sketches" client:load>
-      <h2>Mis bocetos</h2>
-      <p>Contenido de sketches...</p>
-  </Window>
-
+    {windowsConfig.map(win => (
+      <Window id={win.id} title={win.title} client:load>
+        <win.content/>
+      </Window>
+    ))}
 </div>

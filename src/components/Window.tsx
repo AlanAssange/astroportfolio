@@ -1,4 +1,3 @@
-// components/Window.tsx  (o .jsx si no usas TypeScript)
 import React, { useRef, useEffect, useState} from "react";
 import "../styles/window.css";
 
@@ -6,7 +5,7 @@ type WindowProps = {
   id: string;
   title: string;
   children?: any;
-  defaultVisible?: boolean; // opcional, por si quieres que alguna empiece abierta
+  defaultVisible?: boolean; // WIP - Para que las ventanas arrnanquen abiertas...
 };
 
 export default function Window({
@@ -20,17 +19,14 @@ export default function Window({
   const [isDragging, setIsDragging] = useState(false);
   const [isVisible, setIsVisible] = useState(defaultVisible);
 
-  // ← NUEVO: Escuchar evento personalizado para abrir esta ventana
   useEffect(() => {
     const openHandler = (e: CustomEvent<string>) => {
       if (e.detail === id) {
         setIsVisible(true);
-        // Opcional: traer al frente al abrir
         setTimeout(() => bringToFront(), 50);
       }
     };
 
-    // Escuchamos eventos globales tipo "open-window"
     window.addEventListener("open-window" as any, openHandler as EventListener);
 
     return () => {
@@ -49,7 +45,6 @@ export default function Window({
       windowRef.current.style.zIndex = String(maxZ + 1);
     }
   };
-  // --- Drag logic ---
   useEffect(() => {
     const titlebar = titlebarRef.current;
     const win = windowRef.current;
@@ -93,7 +88,6 @@ export default function Window({
     const onPointerUp = (e: PointerEvent) => {
       setIsDragging(false);
       try { titlebar.releasePointerCapture(e.pointerId); } catch {}
-      // limpiamos
       delete (titlebar as any)._dragOffsetX;
       delete (titlebar as any)._dragOffsetY;
     };
@@ -118,19 +112,19 @@ export default function Window({
       className={`window ${isVisible ? "" : "hidden"}`}
       style={{
         position: "absolute"
-      }} /* importante para poder mover con left/top */
+      }}
       role="dialog"
       aria-label={title}
-      onPointerDown={handleWindowClick} /* trae al frente al hacer click */
+      onPointerDown={handleWindowClick}
     >
       <div ref={titlebarRef} className="titlebar" style={{ cursor: "move" }}>
         <span className="title-text">{title}</span>
         <div className="controls">
-          <button className="min-btn" aria-label="minimizar"  onClick={() => setIsVisible(false)}>
+          {/* <button className="min-btn" aria-label="minimizar"  onClick={() => setIsVisible(false)}>
             –
-          </button>
+          </button> */}
           <button className="close-btn" aria-label="cerrar" onClick={() => setIsVisible(false)}>
-            ✕
+            [X]
           </button>
         </div>
       </div>

@@ -1,0 +1,31 @@
+.nav {
+    font-size: 1.5rem;
+    background: transparent;
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    width: 100%;
+    padding: 2.5rem 3.5rem;
+    box-sizing: border-box;
+  }
+
+  .icons {
+    width: 24px;
+    height: 24px;
+    padding: 0.25rem 0.5rem;
+    line-height: 1;
+    transition: opacity 0.2s ease;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    filter: invert();
+  }
+  
+  
+  .icons:hover {
+    opacity: 0.8;
+  }
+  
+  

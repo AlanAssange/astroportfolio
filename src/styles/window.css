@@ -15,7 +15,7 @@
 .window.hidden { display: none; }
 
 .titlebar {
-    background: #005aa0;
+    background: #32084b;
     color: white;
     padding: 6px 8px;
     cursor: grab;
@@ -29,18 +29,15 @@
 .titlebar:active { cursor: grabbing; }
 
 .controls button {
-    margin-left: 6px;
-    background: #d33;
     border: none;
     color: white;
-    padding: 2px 8px;
     cursor: pointer;
     font-weight: bold;
 }
 
-.controls .min-btn {
+/* .controls .min-btn {
     background: #777;
-}
+} */
 
 .content {
     padding: 10px;
