@@ -9,8 +9,7 @@
 }
 
 .shortcut img {
-    width: 48px;
-    height: 48px;
+    width: 58px;
     image-rendering: pixelated;
     pointer-events: none;
 }

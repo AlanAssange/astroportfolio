@@ -8,7 +8,30 @@ import "../styles/navbar.css";
       <img class="icons" src="https://unpkg.com/pixelarticons@1.8.1/svg/moon-star.svg"  />
       <img class="icons" src="https://unpkg.com/pixelarticons@1.8.1/svg/volume-2.svg"  />
     </div>
+    <div id="date" class="nav-center"></div>
     <img class="icons" src="https://unpkg.com/pixelarticons@1.8.1/svg/hidden.svg"  />
   </nav>
 
+  <script>
+    function refreshTimeDate() {
+      const ahora = new Date();
   
+      const fecha = ahora.toLocaleDateString("es-AR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+  
+      const hora = ahora.toLocaleTimeString("es-AR", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+  
+      const dateElement = document.getElementById("date");
+      dateElement!.textContent = `${fecha} ${hora}`;
+      
+    }
+  
+    refreshTimeDate();
+    setInterval(refreshTimeDate, 1000);
+  </script>

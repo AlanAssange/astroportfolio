@@ -1,6 +1,6 @@
 .window {
-    width: 420px;
-    height: 320px;
+    width: 600px;
+    height: 700px;
     background: #e0e0e0;
     border: 2px solid #3a3a3a;
     position: absolute;
@@ -33,6 +33,7 @@
     color: white;
     cursor: pointer;
     font-weight: bold;
+    background: none;
 }
 
 /* .controls .min-btn {
