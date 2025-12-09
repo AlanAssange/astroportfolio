@@ -16,30 +16,22 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
     const el = ref.current;
     if (!el) return;
 
-    let dragging = false;
-    let startX = 0,
-      startY = 0;
-    let startLeft = x,
-      startTop = y;
+    let startX = 0, startY = 0;
+    let startLeft = x, startTop = y;
 
-    const updateInitialPos = () => {
+    const onPointerDown = (e: PointerEvent) => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+
       const rect = el.getBoundingClientRect();
       const parentRect = el.parentElement!.getBoundingClientRect();
       startLeft = rect.left - parentRect.left;
       startTop = rect.top - parentRect.top;
-    };
-
-    const onPointerDown = (e: PointerEvent) => {
-      if (e.button !== 0) return;
-
-      e.preventDefault();
-      el.setPointerCapture(e.pointerId);
-
-      updateInitialPos();
 
       startX = e.clientX;
       startY = e.clientY;
-      dragging = false;
+
+      el.setPointerCapture(e.pointerId);
     };
 
     const onPointerMove = (e: PointerEvent) => {
@@ -48,14 +40,8 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
       const dx = e.clientX - startX;
       const dy = e.clientY - startY;
 
-      if (!dragging && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
-        dragging = true;
-      }
-
-      if (dragging) {
-        el.style.left = `${startLeft + dx}px`;
-        el.style.top = `${startTop + dy}px`;
-      }
+      el.style.left = `${startLeft + dx}px`;
+      el.style.top = `${startTop + dy}px`;
     };
 
     const onPointerUp = (e: PointerEvent) => {
@@ -63,8 +49,9 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
     };
 
     const onDoubleClick = () => {
-      const targetId = target.replace("#", "");
-      window.dispatchEvent(new CustomEvent("open-window", { detail: targetId }));
+      window.dispatchEvent(
+        new CustomEvent("open-window", { detail: target.replace("#", "") })
+      );
     };
 
     el.addEventListener("pointerdown", onPointerDown);
@@ -78,13 +65,12 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
       el.removeEventListener("pointerup", onPointerUp);
       el.removeEventListener("dblclick", onDoubleClick);
     };
-  }, [target, x, y]);
-
+  }, []);
+  
   return (
     <div
       ref={ref}
       className="shortcut"
-      data-target={target}
       style={{ left: `${x}px`, top: `${y}px` }}
       role="button"
       aria-label={label}

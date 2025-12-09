@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState} from "react";
+import { getNextZIndex } from "../utils/zIndexManager";
 import "../styles/window.css";
 
 type WindowProps = {
@@ -16,7 +17,7 @@ export default function Window({
 }: WindowProps) {
   const windowRef = useRef<HTMLDivElement>(null);
   const titlebarRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
+  const dragOffset = useRef({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(defaultVisible);
 
   useEffect(() => {
@@ -35,61 +36,39 @@ export default function Window({
   }, [id]);
 
   const bringToFront = () => {
-    const allWindows = document.querySelectorAll(".window");
-    let maxZ = 0;
-    allWindows.forEach((w) => {
-      const z = parseInt(getComputedStyle(w).zIndex || "0");
-      if (z > maxZ) maxZ = z;
-    });
     if (windowRef.current) {
-      windowRef.current.style.zIndex = String(maxZ + 1);
+      windowRef.current.style.zIndex = String(getNextZIndex());
     }
   };
+
   useEffect(() => {
     const titlebar = titlebarRef.current;
     const win = windowRef.current;
     if (!titlebar || !win) return;
-  
-    let startX = 0;
-    let startY = 0;
-  
+    
     const onPointerDown = (e: PointerEvent) => {
-
-      e.preventDefault();
-      titlebar.setPointerCapture(e.pointerId);
       bringToFront();
-  
       const rect = win.getBoundingClientRect();
-      const winX = rect.left + window.scrollX;
-      const winY = rect.top + window.scrollY;
-  
-      const offsetX = e.clientX - winX;
-      const offsetY = e.clientY - winY;
-  
-      startX = e.clientX;
-      startY = e.clientY;
-  
-      (titlebar as any)._dragOffsetX = offsetX;
-      (titlebar as any)._dragOffsetY = offsetY;
-  
-      setIsDragging(true);
+
+      dragOffset.current = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      };
+
+      titlebar.setPointerCapture(e.pointerId);
     };
   
     const onPointerMove = (e: PointerEvent) => {
-      if (!isDragging) return;
-  
-      const offsetX = (titlebar as any)._dragOffsetX || 0;
-      const offsetY = (titlebar as any)._dragOffsetY || 0;
-  
-      win.style.left = `${e.clientX - offsetX}px`;
-      win.style.top  = `${e.clientY - offsetY}px`;
+      if (titlebar.hasPointerCapture(e.pointerId)) {
+        win.style.left = `${e.clientX - dragOffset.current.x}px`;
+        win.style.top = `${e.clientY - dragOffset.current.y}px`;
+      }
     };
   
     const onPointerUp = (e: PointerEvent) => {
-      setIsDragging(false);
-      try { titlebar.releasePointerCapture(e.pointerId); } catch {}
-      delete (titlebar as any)._dragOffsetX;
-      delete (titlebar as any)._dragOffsetY;
+      try {
+        titlebar.releasePointerCapture(e.pointerId);
+      } catch {}
     };
   
     titlebar.addEventListener("pointerdown", onPointerDown);
@@ -101,7 +80,7 @@ export default function Window({
       document.removeEventListener("pointermove", onPointerMove);
       document.removeEventListener("pointerup", onPointerUp);
     };
-  }, [isDragging]);
+  }, []);
 
   const handleWindowClick = () => bringToFront();
 
