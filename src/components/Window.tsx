@@ -60,8 +60,17 @@ export default function Window({
   
     const onPointerMove = (e: PointerEvent) => {
       if (titlebar.hasPointerCapture(e.pointerId)) {
-        win.style.left = `${e.clientX - dragOffset.current.x}px`;
-        win.style.top = `${e.clientY - dragOffset.current.y}px`;
+        const newLeft = e.clientX - dragOffset.current.x;
+        const newTop = e.clientY - dragOffset.current.y;
+        
+        const maxLeft = window.innerWidth - win.offsetWidth;
+        const maxTop = window.innerHeight - win.offsetHeight;
+        
+        const clampedLeft = Math.min(Math.max(0, newLeft), maxLeft);
+        const clampedTop = Math.min(Math.max(0, newTop), maxTop);
+        
+        win.style.left = `${clampedLeft}px`;
+        win.style.top = `${clampedTop}px`;
       }
     };
   
