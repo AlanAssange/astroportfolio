@@ -1,0 +1,67 @@
+
+.about-window {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-family: 'mezalia-regular';
+  }
+  
+  .about-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem;
+    background: #fff9ef;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .about-avatar {
+    width: 230px;
+    object-fit: cover;
+  }
+
+  .about-name {
+    font-size: 1.9rem;
+    margin: 0;
+    color: #32084b;
+  }
+  
+  .about-subtitle {
+    margin-top: 0.25rem;
+    color: #555;
+  }
+  
+  .about-content {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+    font-size: 18px;
+  }
+
+  .about-content h2{
+    color: #32084b;
+  }
+
+  .about-content li{
+    margin: 8px;
+  }
+  
+  .link {
+    color: #32084b;
+    text-decoration: underline;
+  }
+
+  .quote {
+    border-left: 4px solid #32084b;
+    padding: 0.8rem 1rem;
+    margin: 1rem 0;
+    color: #333;
+  }
+  
+  .quote p {
+    margin: 0;
+  }
+  

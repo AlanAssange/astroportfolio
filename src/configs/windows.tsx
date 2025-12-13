@@ -1,3 +1,4 @@
+import AboutWindow from "../components/About";
 import ContactWindow from "../components/Contact";
 
 export const windowsConfig = [
@@ -10,9 +11,7 @@ export const windowsConfig = [
       y: 240,
       content: () => (
         <>
-          <h2>WORK IN PROGRESS</h2>
-          <p>WORK IN PROGRESS</p>
-          {/* <img src="/lab.jpg" /> */}
+        <AboutWindow/>
         </>
       ),
     },

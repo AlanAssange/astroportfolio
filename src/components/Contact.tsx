@@ -20,14 +20,14 @@ export default function ContactWindow() {
         </p>
   
         <p className="contact-gray">
-          or press the button below to open your mail app.
+          or press the icons below to open your apps.
         </p>
   
         <a href="mailto:alanjc27@gmail.com" className="contact-button">
-          send me an email!
+          <img className="contact-social" src='src/assets/icons/gmail.png'/>
         </a>
         <a href="https://www.linkedin.com/in/alanjaviercanellas/" className="contact-button" target="_blank">
-          let's connect on linkedin!
+          <img className="contact-social" src='src/assets/icons/linkedin.svg'/>
         </a>
       </div>
     );
