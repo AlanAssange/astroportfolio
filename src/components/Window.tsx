@@ -108,9 +108,6 @@ export default function Window({
       <div ref={titlebarRef} className="titlebar" style={{ cursor: "move" }}>
         <span className="title-text">{title}</span>
         <div className="controls">
-          {/* <button className="min-btn" aria-label="minimizar"  onClick={() => setIsVisible(false)}>
-            –
-          </button> */}
           <button className="close-btn" aria-label="cerrar" onClick={() => setIsVisible(false)}>
             [X]
           </button>

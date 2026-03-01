@@ -1,5 +1,6 @@
 import AboutWindow from "../components/About";
 import ContactWindow from "../components/Contact";
+import LinksWindow from "../components/Links";
 
 export const windowsConfig = [
     {
@@ -24,7 +25,7 @@ export const windowsConfig = [
       y: 120,
       content: () => (
         <>
-        <img src="src/assets/icons/linkedin.svg"/>
+        <LinksWindow/>
         </>
       ),
     },

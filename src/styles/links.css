@@ -1,0 +1,21 @@
+.links-section{
+text-align: center;
+}
+
+.icon-map{
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.icons-container {
+    display: flex;            
+    justify-content: center;   
+    gap: 40px;                  
+}
+
+#icon-size{
+    width: 40px;
+}

@@ -4,15 +4,42 @@ import "../styles/navbar.css";
 
 <nav class="nav">
     <div>
-      <img class="icons" src="https://unpkg.com/pixelarticons@1.8.1/svg/sort-alphabetic.svg" />
-      <img class="icons" src="https://unpkg.com/pixelarticons@1.8.1/svg/moon-star.svg"  />
-      <img class="icons" src="https://unpkg.com/pixelarticons@1.8.1/svg/volume-2.svg"  />
+      <img class="icons" src="https://unpkg.com/pixelarticons@latest/svg/languages.svg" />
+      <img id="soundBtn" class="icons" src="https://unpkg.com/pixelarticons@latest/svg/volume-1.svg"  />
     </div>
     <div id="date" class="nav-center"></div>
-    <img class="icons" src="https://unpkg.com/pixelarticons@1.8.1/svg/hidden.svg"  />
+    <img class="icons" src="https://unpkg.com/pixelarticons@latest/svg/power.svg"  />
   </nav>
 
   <script>
+    const audio = new Audio("../src/assets/sounds/grausamkeit.mp3");
+    const soundBtn = document.getElementById("soundBtn") as HTMLImageElement;
+    audio.loop = true;          
+    audio.preload = "auto";     
+    audio.volume = 0.4;
+    let isMuted = true;
+    let started = false;
+
+    soundBtn.addEventListener("click", async () => {
+
+      if (!started) {
+        try {
+          await audio.play();
+          started = true;
+        } catch (err) {
+          console.log("Audio bloqueado por el navegador");
+        }
+      }
+
+      isMuted = !isMuted;
+      audio.muted = isMuted;
+
+      soundBtn.src = isMuted
+        ? "https://unpkg.com/pixelarticons@1.8.1/svg/volume-x.svg"
+        : "https://unpkg.com/pixelarticons@1.8.1/svg/volume-2.svg";
+
+    });
+
     function refreshTimeDate() {
       const now = new Date();
       const dateEl = document.getElementById("date");

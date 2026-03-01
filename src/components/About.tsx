@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/about.css"; // si querés separar estilos
+import "../styles/about.css";
 
 export default function AboutWindow() {
   return (
