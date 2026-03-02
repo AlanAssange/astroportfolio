@@ -66,7 +66,7 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
       el.removeEventListener("dblclick", onDoubleClick);
     };
   }, []);
-  
+
   return (
     <div
       ref={ref}

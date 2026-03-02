@@ -1,65 +1,64 @@
 .contact-container {
-    max-width: 520px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 40px 20px;
-    background: #fff9ef;
-    border-radius: 20px;
-  }
-  
-  .contact-title {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .contact-subtitle {
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.4rem;
-    margin-bottom: 25px;
-  }
-  
-  .contact-illustration {
-    width: 230px;
-    margin: 20px 0;
-  }
-  
-  .contact-email {
-    font-size: 1rem;
-    margin-top: 15px;
-  }
-  
-  .contact-email a {
-    color: #32084b;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  
-  .contact-gray {
-    color: #666;
-    font-size: 0.9rem;
-    margin-top: 8px;
-  }
-  
-  .contact-button {
-    display: inline-block;
-    color: white;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    margin-top: 15px;
-    margin-left: 20px;
-    transition: 0.2s;
-  }
-  
-  .contact-social{
-    width: 40px;
-    transition: transform 0.4s ease;
-  }
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff9ef;
+  border-radius: 20px;
+}
 
-  .contact-social:hover{
-    transform: scale(1.125);
-  }
-  
+.contact-title {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.contact-subtitle {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4rem;
+  margin-bottom: 25px;
+}
+
+.contact-illustration {
+  width: 230px;
+  margin: 20px 0;
+}
+
+.contact-email {
+  font-size: 1rem;
+  margin-top: 15px;
+}
+
+.contact-email a {
+  color: #32084b;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-gray {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+.contact-button {
+  display: inline-block;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 15px;
+  margin-left: 20px;
+  transition: 0.2s;
+}
+
+.contact-social {
+  width: 40px;
+  transition: transform 0.4s ease;
+}
+
+.contact-social:hover {
+  transform: scale(1.125);
+}

@@ -11,7 +11,9 @@
     z-index: 1;
 }
 
-.window.hidden { display: none; }
+.window.hidden {
+    display: none;
+}
 
 .titlebar {
     background: #32084b;
@@ -25,7 +27,9 @@
     user-select: none;
 }
 
-.titlebar:active { cursor: grabbing; }
+.titlebar:active {
+    cursor: grabbing;
+}
 
 .controls button {
     border: none;
@@ -34,10 +38,6 @@
     font-weight: bold;
     background: none;
 }
-
-/* .controls .min-btn {
-    background: #777;
-} */
 
 .content {
     padding: 10px;
