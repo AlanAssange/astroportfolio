@@ -6,7 +6,7 @@ export default function AboutWindow() {
     <div className="about-window">
       <div className="about-header">
         <img
-          src="src/assets/images/fixedcromo.png"
+          src="src/assets/images/profilerefactor.png"
           alt="Profile picture"
           className="about-avatar"
         />
@@ -14,13 +14,13 @@ export default function AboutWindow() {
           <h2 className="about-name">Alan Javier Cañellas</h2>
           <div className="about-header-columns">
             <div className="about-meta">
-              <p>Class: Software Developer</p>
-              <p>Subclass: Cybersecurity Student</p>
-              <p>Level: 25</p>
-              <p>Location: Buenos Aires, Argentina</p>
+              <p><strong className="about-titles">Class:</strong> Software Developer</p>
+              <p><strong className="about-titles">Subclass:</strong> Cybersecurity Student</p>
+              <p><strong className="about-titles">Level:</strong> 25</p>
+              <p><strong className="about-titles">Location:</strong> Buenos Aires, Argentina</p>
             </div>
             <div className="about-overview">
-              <h3>Character Overview</h3>
+              <h3 className="about-titles">Character Overview</h3>
               <p>
                 Backend-focused developer with passion for secure systems,
                 RPG aesthetics and old-school interfaces.
@@ -28,9 +28,16 @@ export default function AboutWindow() {
             </div>
           </div>
         </div>
-
       </div>
-
+      <div className="about-separator">
+        <span className="line"></span>
+        <img
+          src="src/assets/icons/dice.png"
+          alt="Divider icon"
+          className="separator-icon"
+        />
+        <span className="line"></span>
+      </div>
       <div className="about-content">
         <h2>ABOUT</h2>
         <p>Hi! i'm Alan, a 25 years old software developer from Buenos Aires, Argentina.</p>
@@ -46,6 +53,16 @@ export default function AboutWindow() {
           <li>Maintain several <a href='https://es.wikipedia.org/wiki/Zettelkasten' target="_blank">Zettelkastens</a> as part of my personal interest knowledge-building process, particularly in Philosophy, and Cybersecurity.</li>
         </ul>
 
+        <div className="about-separator">
+          <span className="line"></span>
+          <img
+            src="src/assets/icons/dice.png"
+            alt="Divider icon"
+            className="separator-icon"
+          />
+          <span className="line"></span>
+        </div>
+
         <h2>EDUCATION</h2>
         <blockquote className="quote">
           <p>Bachelor of Science in Cybersecurity (2024 - Present)</p>
@@ -54,8 +71,18 @@ export default function AboutWindow() {
 
         <blockquote className="quote">
           <p>Bachelor of Science in Computer Science (2022 - 2024)</p>
-          <p>University of Lujan.</p>
+          <p>Lujan University.</p>
         </blockquote>
+
+        <div className="about-separator">
+          <span className="line"></span>
+          <img
+            src="src/assets/icons/dice.png"
+            alt="Divider icon"
+            className="separator-icon"
+          />
+          <span className="line"></span>
+        </div>
 
         <h2>LANGUAGE PROFICIENCY</h2>
 
