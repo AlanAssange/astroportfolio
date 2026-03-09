@@ -105,3 +105,14 @@
   height: auto;
   image-rendering: pixelated;
 }
+
+ul {
+  list-style: none;
+
+}
+
+li::before {
+  content: "⚔";
+  color: #32084b;
+  margin-right: 8px;
+}

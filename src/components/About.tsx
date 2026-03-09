@@ -74,6 +74,11 @@ export default function AboutWindow() {
           <p>Lujan University.</p>
         </blockquote>
 
+        <blockquote className="quote">
+          <p>Self-made Scholar (∞)</p>
+          <p>Always learning!!</p>
+        </blockquote>
+
         <div className="about-separator">
           <span className="line"></span>
           <img
@@ -89,7 +94,7 @@ export default function AboutWindow() {
         <blockquote className="quote">
           <p>English - C2 (Advanced)</p>
           <p>Spanish - Native</p>
-          <p>German - Currently learning!!</p>
+          <p>German - Currently learning</p>
         </blockquote>
       </div>
     </div>

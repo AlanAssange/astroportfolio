@@ -1,5 +1,11 @@
 .links-section {
     text-align: center;
+    background: #fff9ef;
+}
+
+.links-section h2{
+    margin: 0;
+    padding-top: 20px;
 }
 
 .icon-map {
