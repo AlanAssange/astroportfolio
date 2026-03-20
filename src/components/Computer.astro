@@ -6,14 +6,29 @@ import { windowsConfig } from "../configs/windows";
 import NavBar from '../components/NavBar.astro';
 ---
 <div class="desktop">
+  <div id="boot-loader" class="boot-screen">
+    <div class="terminal-loader">
+      <img src="public/webicon.png"/>
+    </div>
+  </div>
     <NavBar/>
     {windowsConfig.map(win => (
-      <Shortcut label={win.label} icon={win.icon} target={`#${win.id}`} x={win.x} y={win.y} client:load/>
+      <Shortcut label={win.label} icon={win.icon} target={`#${win.id}`} x={win.x} y={win.y} client:only="react"/>
     ))}
 
     {windowsConfig.map(win => (
-      <Window id={win.id} title={win.title} client:load>
-        <win.content/>
-      </Window>
+      <Window id={win.id} title={win.title} client:only="react" />
     ))}
 </div>
+
+<script is:inline>
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('boot-loader');
+    
+    setTimeout(() => {
+      if (loader) {
+        loader.classList.add('hidden');
+      }
+    }, 400); 
+  });
+</script>

@@ -1,7 +1,11 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import "../styles/about.css";
 
 export default function AboutWindow() {
+
+  const {t} = useTranslation();
+
   return (
     <div className="about-window">
       <div className="about-header">
@@ -11,20 +15,17 @@ export default function AboutWindow() {
           className="about-avatar"
         />
         <div className="about-flex-header">
-          <h2 className="about-name">Alan Javier Cañellas</h2>
+          <h2 className="about-name">{t('aboutHeader.name')}</h2>
           <div className="about-header-columns">
             <div className="about-meta">
-              <p><strong className="about-titles">Class:</strong> Software Developer</p>
-              <p><strong className="about-titles">Subclass:</strong> Cybersecurity Student</p>
-              <p><strong className="about-titles">Level:</strong> 25</p>
-              <p><strong className="about-titles">Location:</strong> Buenos Aires, Argentina</p>
+              <p><strong className="about-titles">{t('aboutHeader.class')} </strong>{t('aboutHeader.className')}</p>
+              <p><strong className="about-titles">{t('aboutHeader.subclass')} </strong>{t('aboutHeader.subclassName')}</p>
+              <p><strong className="about-titles">{t('aboutHeader.level')} </strong> {t('aboutHeader.levelNumber')}</p>
+              <p><strong className="about-titles">{t('aboutHeader.location')}</strong> {t('aboutHeader.locationContent')}</p>
             </div>
             <div className="about-overview">
-              <h3 className="about-titles">Character Overview</h3>
-              <p>
-                Backend-focused developer with passion for secure systems,
-                RPG aesthetics and old-school interfaces.
-              </p>
+              <h3 className="about-titles">{t('aboutHeader.characterOverview')}</h3>
+              <p>{t('aboutHeader.characterOverviewDesc')}</p>
             </div>
           </div>
         </div>

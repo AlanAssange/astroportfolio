@@ -1,4 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import "../i18n/i18n"; // Tu configuración de idioma
 import "../styles/shortcuts.css";
 
 interface ShortcutProps {
@@ -10,9 +12,22 @@ interface ShortcutProps {
 }
 
 export default function Shortcut({ label, icon, target, x = 20, y = 20 }: ShortcutProps) {
+  const { t, i18n } = useTranslation();
+  const [ready, setReady] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const saved = localStorage.getItem('lang') || 'en';
+    if (i18n.language !== saved) {
+      i18n.changeLanguage(saved).then(() => setReady(true));
+    } else {
+      setReady(true);
+    }
+  }, [i18n]);
+
+  useEffect(() => {
+    if (!ready) return; 
+
     const el = ref.current;
     if (!el) return;
 
@@ -65,7 +80,9 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
       el.removeEventListener("pointerup", onPointerUp);
       el.removeEventListener("dblclick", onDoubleClick);
     };
-  }, []);
+  }, [ready, target, x, y]);
+
+  if (!ready) return null; 
 
   return (
     <div
@@ -73,10 +90,10 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
       className="shortcut"
       style={{ left: `${x}px`, top: `${y}px` }}
       role="button"
-      aria-label={label}
+      aria-label={t(label)}
     >
-      <img src={icon} alt={label} draggable="false" />
-      <span>{label}</span>
+      <img src={icon} alt={t(label)} draggable="false" />
+      <span>{t(label)}</span> 
     </div>
   );
 }

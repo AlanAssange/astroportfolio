@@ -1,24 +1,39 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { getNextZIndex } from "../utils/zIndexManager";
+import { windowsConfig } from "../configs/windows";
+import "../i18n/i18n";
 import "../styles/window.css";
 
 type WindowProps = {
   id: string;
   title: string;
-  children?: any;
-  defaultVisible?: boolean; // WIP - Para que las ventanas arrnanquen abiertas...
+  defaultVisible?: boolean;
 };
 
 export default function Window({
   id,
   title,
-  children,
   defaultVisible = false,
 }: WindowProps) {
+  const { t, i18n } = useTranslation();
+  const [ready, setReady] = useState(false);
   const windowRef = useRef<HTMLDivElement>(null);
   const titlebarRef = useRef<HTMLDivElement>(null);
   const dragOffset = useRef({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(defaultVisible);
+
+  const windowData = windowsConfig.find(win => win.id === id);
+  const ContentComponent = windowData?.Component;
+
+  useEffect(() => {
+    const saved = localStorage.getItem('lang') || 'en';
+    if (i18n.language !== saved) {
+      i18n.changeLanguage(saved).then(() => setReady(true));
+    } else {
+      setReady(true);
+    }
+  }, [i18n]);
 
   useEffect(() => {
     const openHandler = (e: CustomEvent<string>) => {
@@ -29,7 +44,6 @@ export default function Window({
     };
 
     window.addEventListener("open-window" as any, openHandler as EventListener);
-
     return () => {
       window.removeEventListener("open-window" as any, openHandler as EventListener);
     };
@@ -42,6 +56,8 @@ export default function Window({
   };
 
   useEffect(() => {
+    if (!ready) return; 
+
     const titlebar = titlebarRef.current;
     const win = windowRef.current;
     if (!titlebar || !win) return;
@@ -77,7 +93,7 @@ export default function Window({
     const onPointerUp = (e: PointerEvent) => {
       try {
         titlebar.releasePointerCapture(e.pointerId);
-      } catch { }
+      } catch {}
     };
 
     titlebar.addEventListener("pointerdown", onPointerDown);
@@ -89,31 +105,36 @@ export default function Window({
       document.removeEventListener("pointermove", onPointerMove);
       document.removeEventListener("pointerup", onPointerUp);
     };
-  }, []);
+  }, [ready]);
 
-  const handleWindowClick = () => bringToFront();
+  if (!ready) return null;
 
   return (
     <div
       ref={windowRef}
       id={id}
       className={`window ${isVisible ? "" : "hidden"}`}
-      style={{
-        position: "absolute"
-      }}
+      style={{ position: "absolute" }}
       role="dialog"
-      aria-label={title}
-      onPointerDown={handleWindowClick}
+      aria-label={t(title)}
+      onPointerDown={bringToFront}
     >
       <div ref={titlebarRef} className="titlebar" style={{ cursor: "move" }}>
-        <span className="title-text">{title}</span>
+        <span className="title-text">{t(title)}</span> 
+        
         <div className="controls">
-          <button className="close-btn" aria-label="cerrar" onClick={() => setIsVisible(false)}>
+          <button 
+            className="close-btn" 
+            aria-label="cerrar" 
+            onClick={() => setIsVisible(false)}
+          >
             [X]
           </button>
         </div>
       </div>
-      <div className="content">{children}</div>
+      <div className="content">
+        {ContentComponent ? <ContentComponent /> : <p>Cargando...</p>}
+      </div>
     </div>
   );
 }

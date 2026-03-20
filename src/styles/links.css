@@ -24,4 +24,15 @@
 
 #icon-size {
     width: 40px;
+    height: 40px;
+    object-fit: contain;
 }
+
+.contact-social {
+    width: 40px;
+    transition: transform 0.4s ease;
+  }
+  
+  .contact-social:hover {
+    transform: scale(1.125);
+  }

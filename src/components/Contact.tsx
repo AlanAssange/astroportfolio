@@ -23,7 +23,7 @@ export default function ContactWindow() {
         or press the icons below to open your apps.
       </p>
 
-      <a href="mailto:alanjc27@gmail.com" className="contact-button">
+      <a href="mailto:alanjc27@gmail.com" className="contact-button" target="_blank"> 
         <img className="contact-social" src='src/assets/icons/gmail.png' />
       </a>
       <a href="https://www.linkedin.com/in/alanjaviercanellas/" className="contact-button" target="_blank">

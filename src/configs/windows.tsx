@@ -5,56 +5,38 @@ import LinksWindow from "../components/Links";
 export const windowsConfig = [
   {
     id: "win-lab",
-    title: "About",
-    label: "About",
+    title: "shortcuts.about",
+    label: "shortcuts.about",
     icon: "/src/assets/icons/ballicon.png",
-    x: 40,
+    x: 52,
     y: 240,
-    content: () => (
-      <>
-        <AboutWindow />
-      </>
-    ),
+    Component: AboutWindow,
   },
   {
     id: "win-links",
-    title: "Links",
-    label: "Links",
+    title: "shortcuts.links",
+    label: "shortcuts.links",
     icon: "/src/assets/icons/linkicon.png",
-    x: 40,
+    x: 52,
     y: 120,
-    content: () => (
-      <>
-        <LinksWindow />
-      </>
-    ),
+    Component: LinksWindow,
   },
   {
     id: "win-work",
-    title: "Work",
-    label: "Work",
+    title: "shortcuts.work",
+    label: "shortcuts.work",
     icon: "/src/assets/icons/shieldicon.png",
-    x: 40,
+    x: 52,
     y: 360,
-    content: () => (
-      <>
-        <h2>WORK IN PROGRESS</h2>
-        <p>WORK IN PROGRESS</p>
-        {/* <img src="/lab.jpg" /> */}
-      </>
-    ),
+    Component: LinksWindow
   },
   {
     id: "win-contact",
-    title: "Contact",
-    label: "Contact",
+    title: "shortcuts.contact",
+    label: "shortcuts.contact",
     icon: "/src/assets/icons/contacticon.png",
-    x: 40,
+    x: 52,
     y: 480,
-    content: () => (
-      <>
-        <ContactWindow />
-      </>
-    ),
+    Component: ContactWindow,
   },
 ];

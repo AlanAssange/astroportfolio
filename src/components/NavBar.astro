@@ -5,6 +5,7 @@ import "../styles/navbar.css";
 <nav class="nav">
   <div>
     <img
+      id="langBtn"
       class="icons"
       src="https://unpkg.com/pixelarticons@latest/svg/languages.svg"
     />
@@ -21,46 +22,83 @@ import "../styles/navbar.css";
   />
 </nav>
 
-<script>
-  const audio = new Audio("../src/assets/sounds/grausamkeit.mp3");
-  const soundBtn = document.getElementById("soundBtn") as HTMLImageElement;
-  audio.loop = true;
-  audio.preload = "auto";
-  audio.volume = 0.4;
-  let isMuted = true;
-  let started = false;
+<script is:inline>
 
-  soundBtn.addEventListener("click", async () => {
-    if (!started) {
-      try {
-        await audio.play();
-        started = true;
-      } catch (err) {
-        console.log("Audio bloqueado por el navegador");
-      }
-    }
-
-    isMuted = !isMuted;
-    audio.muted = isMuted;
-
-    soundBtn.src = isMuted
-      ? "https://unpkg.com/pixelarticons@1.8.1/svg/volume-x.svg"
-      : "https://unpkg.com/pixelarticons@1.8.1/svg/volume-2.svg";
-  });
-
-  function refreshTimeDate() {
-    const now = new Date();
+  document.addEventListener("DOMContentLoaded", () => {
+  
+    const langBtn = document.getElementById("langBtn");
+    const soundBtn = document.getElementById("soundBtn");
     const dateEl = document.getElementById("date");
-
-    dateEl!.textContent = now.toLocaleString("es-AR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
+  
+    const audio = new Audio("../src/assets/sounds/grausamkeit.mp3");
+    audio.loop = true;
+    audio.volume = 0.4;
+  
+    let started = false;
+    let isMuted = true;  
+    let lang = localStorage.getItem("lang");
+  
+    if (!lang) {
+      const browserLang = navigator.language || "en";
+      lang = browserLang.startsWith("es") ? "es" : "en";
+      localStorage.setItem("lang", lang);
+    }
+  
+    updateFlag(lang);
+  
+    langBtn.addEventListener("click", () => {
+  
+      const current = localStorage.getItem("lang") || "en";
+      const next = current === "es" ? "en" : "es";
+  
+      localStorage.setItem("lang", next);
+  
+      location.reload();
     });
-  }
-
-  refreshTimeDate();
-  setInterval(refreshTimeDate, 1000);
-</script>
+  
+    function updateFlag(lang) {
+  
+      langBtn.src =
+        lang === "es"
+          ? "https://hatscripts.github.io/circle-flags/flags/ar.svg"
+          : "https://hatscripts.github.io/circle-flags/flags/us.svg";
+    }
+  
+    soundBtn.addEventListener("click", async () => {
+  
+      if (!started) {
+        try {
+          await audio.play();
+          started = true;
+        } catch {}
+      }
+  
+      isMuted = !isMuted;
+      audio.muted = isMuted;
+  
+      soundBtn.src = isMuted
+        ? "https://unpkg.com/pixelarticons@1.8.1/svg/volume-x.svg"
+        : "https://unpkg.com/pixelarticons@1.8.1/svg/volume-2.svg";
+    });
+  
+    function updateDate() {
+  
+      const lang = localStorage.getItem("lang") || "en";
+  
+      const locale = lang === "es" ? "es-AR" : "en-US";
+  
+      dateEl.textContent = new Date().toLocaleString(locale, {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+  
+    updateDate();
+    setInterval(updateDate, 1000);
+  
+  });
+  
+  </script>
