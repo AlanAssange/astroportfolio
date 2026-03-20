@@ -20,25 +20,31 @@ const en = {
         iPoints: "I...",
         swordOne: "Develop backend solutions end-to-end for a streaming platform, with a focus on user transactions and third-party integrations.",
         swordTwo:"Build frontend projects in my free time, often using AI to assist with visuals and creative assets *things that im not capable of doing myself!*",
-        swordThree:"Maintain several Zettelkastens as part of my personal interest knowledge-building process, particularly in Philosophy, and Cybersecurity.",
+        swordThreeMaintain:"Maintain several",
+        swordThreeZett:" Zettelkastens",
+        swordThreeContinue:"as part of my personal interest knowledge-building process, particularly in Philosophy, and Cybersecurity.",
         educationTitle: "EDUCATION",
         firstTitle: "Bachelor of Science in Cybersecurity (2024 - Present)",
         firstUni: "FASTA Catherina University.",
-        secondTitle:"",
-        secondUni:"",
-        thirdTitle:"",
-        thirdUni:"",
-        languageTitle:"",
-        languageOne:"",
-        languageTwo:"",
-        languageThree:""
+        secondTitle:"Bachelor of Science in Computer Science (2022-2024)",
+        secondUni:"Lujan University",
+        thirdTitle:"Self-made Scholar (∞)",
+        thirdUni:"Always learning!!",
+        languageTitle:"LANGUAGE PROFICIENCY",
+        languageOne:"English - C2 (Advanced)",
+        languageTwo:"Spanish - Native",
+        languageThree:"German - Currently learning"
 
     },
     contact:{
-
+        contactTitle:"Get in touch!",
+        contactSubtitle:"the easiest way to contact me is through email or linkedin",
+        email:"email me at:",
+        emailDom:"alanjc27@gmail.com",
+        emailPress:"or press the icons below to open your apps."
     },
     links:{
-
+        links: "All my links"
     },
     shortcuts:{
         links:"Links",

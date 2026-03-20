@@ -4,7 +4,7 @@ import "../styles/about.css";
 
 export default function AboutWindow() {
 
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="about-window">
@@ -40,18 +40,18 @@ export default function AboutWindow() {
         <span className="line"></span>
       </div>
       <div className="about-content">
-        <h2>ABOUT</h2>
-        <p>Hi! i'm Alan, a 25 years old software developer from Buenos Aires, Argentina.</p>
-        <p>I…</p>
+        <h2>{t('aboutData.aboutTitle')}</h2>
+        <p>{t('aboutData.aboutDesc')}</p>
+        <p>{t('aboutData.iPoints')}</p>
 
         <ul>
           <li>
-            Develop backend solutions end-to-end for a streaming platform, with a focus on user transactions and third-party integrations.
+            {t('aboutData.swordOne')}
           </li>
           <li>
-            Build frontend projects in my free time, often using AI to assist with visuals and creative assets  *things that im not capable of doing myself!*
+            {t('aboutData.swordTwo')}
           </li>
-          <li>Maintain several <a href='https://es.wikipedia.org/wiki/Zettelkasten' target="_blank">Zettelkastens</a> as part of my personal interest knowledge-building process, particularly in Philosophy, and Cybersecurity.</li>
+          <li>{t('aboutData.swordThreeMaintain')} <a href='https://es.wikipedia.org/wiki/Zettelkasten' target="_blank">{t('aboutData.swordThreeZett')}</a> {t('aboutData.swordThreeContinue')}</li>
         </ul>
 
         <div className="about-separator">
@@ -64,20 +64,20 @@ export default function AboutWindow() {
           <span className="line"></span>
         </div>
 
-        <h2>EDUCATION</h2>
+        <h2>{t('aboutData.educationTitle')}</h2>
         <blockquote className="quote">
-          <p>Bachelor of Science in Cybersecurity (2024 - Present)</p>
-          <p>FASTA Catherina University.</p>
+          <p>{t('aboutData.firstTitle')}</p>
+          <p>{t('aboutData.firstUni')}</p>
         </blockquote>
 
         <blockquote className="quote">
-          <p>Bachelor of Science in Computer Science (2022 - 2024)</p>
-          <p>Lujan University.</p>
+          <p>{t('aboutData.secondTitle')}</p>
+          <p>{t('aboutData.secondUni')}</p>
         </blockquote>
 
         <blockquote className="quote">
-          <p>Self-made Scholar (∞)</p>
-          <p>Always learning!!</p>
+          <p>{t('aboutData.thirdTitle')}</p>
+          <p>{t('aboutData.thirdUni')}</p>
         </blockquote>
 
         <div className="about-separator">
@@ -90,12 +90,12 @@ export default function AboutWindow() {
           <span className="line"></span>
         </div>
 
-        <h2>LANGUAGE PROFICIENCY</h2>
+        <h2>{t('aboutData.languageTitle')}</h2>
 
         <blockquote className="quote">
-          <p>English - C2 (Advanced)</p>
-          <p>Spanish - Native</p>
-          <p>German - Currently learning</p>
+          <p>{t('aboutData.languageOne')}</p>
+          <p>{t('aboutData.languageTwo')}</p>
+          <p>{t('aboutData.languageThree')}</p>
         </blockquote>
       </div>
     </div>

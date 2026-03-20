@@ -1,10 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import "../styles/links.css";
 
 export default function LinksWindow() {
+    const { t } = useTranslation();
     return (
         <section className="links-section">
-            <h2>All my links</h2>
+            <h2>{t("links.links")}</h2>
             <div className="icons-container">
                 <div className="icon-map">
                     <a href="https://www.linkedin.com/in/alanjaviercanellas/"target="_blank">
