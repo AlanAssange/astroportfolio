@@ -1,0 +1,146 @@
+.portfolio-container {
+    background: #fff9ef;
+    color: #32084b;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    max-width: 800px;
+    height: calc(80vh - 4rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .portfolio-banner {
+    background-color: #32084b;
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+  }
+  
+  .portfolio-banner p {
+    margin: 0;
+  }
+  
+  .banner-text {
+    font-size: 16px;
+    color: white;
+    margin-bottom: 5px !important;
+  }
+  
+  .banner-subtext {
+    font-size: 15px;
+    color: #e6f0fa;
+  }
+  
+  .banner-link {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+  
+  .portfolio-grid {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  
+  .tools-column {
+    flex: 1.2;
+    min-width: 300px;
+  }
+  
+  .dev-column {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  
+  .badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .badge {
+    background-color: #1b1b1b;
+    border: 1px solid #ffffff; 
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    display: inline-block;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+  
+  .portfolio-divider {
+    border: none;
+    border-top: 1px solid #2c3a4a;
+    margin: 40px 0 30px;
+  }
+
+  .work-section {
+    margin-top: 20px;
+  }
+  
+  .project-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .project-subtitle {
+    font-size: 1.2rem;
+    color: #4a8bc2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .project-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 800px;
+    margin-bottom: 20px;
+  }
+  
+  .project-image-placeholder {
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 16 / 9;
+    background-color: #121a24; 
+    border: 2px dashed #4a8bc2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .placeholder-content {
+    text-align: center;
+    color: #4a8bc2;
+    font-family: 'Courier New', Courier, monospace; 
+  }
+  
+  .placeholder-content span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: block;
+  }
+  
+  .placeholder-content p {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    opacity: 0.8;
+  }
+  
+  @media (max-width: 768px) {
+    .portfolio-grid {
+      gap: 40px;
+    }
+  }

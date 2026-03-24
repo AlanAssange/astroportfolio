@@ -4,11 +4,12 @@ import Window from "./Window";
 import "../styles/computer.css";
 import { windowsConfig } from "../configs/windows";
 import NavBar from '../components/NavBar.astro';
+import PianoKnight from '../components/PianoKnight.tsx';
 ---
 <div class="desktop">
   <div id="boot-loader" class="boot-screen">
     <div class="terminal-loader">
-      <img class="loader-icon" src="public/webicon.png"/>
+      <img class="loader-icon" src="webicon.png"/>
     </div>
   </div>
     <NavBar/>
@@ -19,6 +20,7 @@ import NavBar from '../components/NavBar.astro';
     {windowsConfig.map(win => (
       <Window id={win.id} title={win.title} client:only="react" />
     ))}
+    <PianoKnight/>
 </div>
 
 <script is:inline>

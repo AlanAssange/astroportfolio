@@ -26,7 +26,7 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
   }, [i18n]);
 
   useEffect(() => {
-    if (!ready) return; 
+    if (!ready) return;
 
     const el = ref.current;
     if (!el) return;
@@ -52,11 +52,17 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
     const onPointerMove = (e: PointerEvent) => {
       if (!el.hasPointerCapture(e.pointerId)) return;
 
-      const dx = e.clientX - startX;
-      const dy = e.clientY - startY;
+      const newLeft = startLeft + (e.clientX - startX);
+      const newTop = startTop + (e.clientY - startY);
 
-      el.style.left = `${startLeft + dx}px`;
-      el.style.top = `${startTop + dy}px`;
+      const maxLeft = window.innerWidth - el.offsetWidth;
+      const maxTop = window.innerHeight - el.offsetHeight;
+
+      const clampedLeft = Math.min(Math.max(0, newLeft), maxLeft);
+      const clampedTop = Math.min(Math.max(0, newTop), maxTop);
+
+      el.style.left = `${clampedLeft}px`;
+      el.style.top = `${clampedTop}px`;
     };
 
     const onPointerUp = (e: PointerEvent) => {
@@ -82,7 +88,7 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
     };
   }, [ready, target, x, y]);
 
-  if (!ready) return null; 
+  if (!ready) return null;
 
   return (
     <div
@@ -93,7 +99,7 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
       aria-label={t(label)}
     >
       <img src={icon} alt={t(label)} draggable="false" />
-      <span>{t(label)}</span> 
+      <span>{t(label)}</span>
     </div>
   );
 }

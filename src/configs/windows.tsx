@@ -1,6 +1,7 @@
 import AboutWindow from "../components/About";
 import ContactWindow from "../components/Contact";
 import LinksWindow from "../components/Links";
+import WorkWindow from "../components/Work";
 
 export const windowsConfig = [
   {
@@ -28,7 +29,7 @@ export const windowsConfig = [
     icon: "/src/assets/icons/shieldicon.png",
     x: 52,
     y: 360,
-    Component: LinksWindow
+    Component: WorkWindow
   },
   {
     id: "win-contact",

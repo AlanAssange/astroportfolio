@@ -17,7 +17,7 @@ const es = {
     aboutData: {
         aboutTitle: "Sobre Mí",
         aboutDesc: "Hola! Soy Alan. Desarrollador de software radicado en Buenos Aires, Argentina.",
-        iPoints: "Yo...",
+        iPoints: "Y...",
         swordOne: " Desarrollo soluciones backend punta a punta para una plataforma de streaming, enfocado en las transacciones de usuarios (área de pagos) e integraciones de proveedores externos",
         swordTwo: "Construyo proyectos frontend en mi tiempo libre, utilizando IA  para asistirme con el apartado visual y los assets creativos que estarán visualizando!",
         swordThreeMaintain: "Mantengo varios",
