@@ -4,6 +4,8 @@
     height: 100vh;
     background: url('src/assets/images/castlewall.png');
     background-size: cover;
+    background-position: center;
+    overflow: hidden;
 }
 
 .boot-screen {
