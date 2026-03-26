@@ -63,6 +63,9 @@ export default function Window({
     if (!titlebar || !win) return;
 
     const onPointerDown = (e: PointerEvent) => {
+      if ((e.target as HTMLElement).closest('.controls')) {
+        return; 
+      }
       bringToFront();
       const rect = win.getBoundingClientRect();
 
