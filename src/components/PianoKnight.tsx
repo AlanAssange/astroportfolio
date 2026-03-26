@@ -1,11 +1,73 @@
-import React from "react";
-import "../styles/pianoknight.css"
+import React, { useState, useEffect } from "react";
+import "../styles/pianoknight.css";
 
+export default function PianoKnight() {
+  const [started, setStarted] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
-export default function PianoKnight(){
-
+  useEffect(() => {
+    const handleSync = (e: any) => {
+      setIsMuted(e.detail.isMuted);
+    };
     
-    return(
-        <img className="piano-knight" id="piano-sound" src="src/assets/images/pianoknight.png"></img>
-    )
+    window.addEventListener("syncKnightAudio", handleSync);
+    return () => window.removeEventListener("syncKnightAudio", handleSync);
+  }, []);
+
+  const handleStartSound = async () => {
+    let audio = (window as any).knightAudio;
+
+    if (!audio) {
+      audio = new Audio("/src/assets/sounds/grausamkeit.mp3");
+      audio.loop = true;
+      audio.volume = 0.4;
+      (window as any).knightAudio = audio;
+    }
+
+    if (!started) {
+      try {
+        audio.muted = false;
+        await audio.play();
+        setStarted(true);
+        setIsMuted(false);
+        
+        window.dispatchEvent(new CustomEvent("syncKnightAudio", { 
+          detail: { isMuted: false, started: true } 
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      const nextMutedState = !audio.muted;
+      audio.muted = nextMutedState;
+      setIsMuted(nextMutedState);
+      
+      window.dispatchEvent(new CustomEvent("syncKnightAudio", { 
+        detail: { isMuted: nextMutedState, started: true } 
+      }));
+    }
+  };
+
+  const isPlaying = started && !isMuted;
+  const knightImage = isPlaying 
+    ? "/src/assets/images/happyknight.png" 
+    : "/src/assets/images/pianoknight.png";
+
+  return (
+    <div className="knight-container">
+      {isPlaying && (
+        <img 
+          src="/src/assets/images/musicnotes.png" 
+          className="music-notes" 
+          alt="Notes"
+        />
+      )}
+      <img
+        className="piano-knight"
+        src={knightImage}
+        onClick={handleStartSound}
+        alt="Piano Knight"
+      />
+    </div>
+  );
 }

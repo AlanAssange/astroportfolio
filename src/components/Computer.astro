@@ -4,7 +4,7 @@ import Window from "./Window";
 import "../styles/computer.css";
 import { windowsConfig } from "../configs/windows";
 import NavBar from '../components/NavBar.astro';
-import PianoKnight from '../components/PianoKnight.tsx';
+import PianoKnight from '../components/PianoKnight';
 ---
 <div class="desktop">
   <div id="boot-loader" class="boot-screen">
@@ -20,7 +20,7 @@ import PianoKnight from '../components/PianoKnight.tsx';
     {windowsConfig.map(win => (
       <Window id={win.id} title={win.title} client:only="react" />
     ))}
-    <PianoKnight/>
+    <PianoKnight client:only="react"/>
 </div>
 
 <script is:inline>

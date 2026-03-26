@@ -1,8 +1,45 @@
-.piano-knight{
-    width: 450px;
-    cursor: pointer;
+.knight-container {
     position: absolute;
     bottom: 0;
     right: 0;
+    width: 450px;
     transform: translate(10px, 15px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.piano-knight {
+    width: 100%;
+    cursor: pointer;
+    display: block;
+}
+
+.music-notes {
+    position: absolute;
+    top: -30px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    pointer-events: none;
+    animation: floatNotes 3s ease-in-out infinite;
+}
+
+@keyframes floatNotes {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+
+@media (max-width: 600px) {
+    .knight-container {
+        width: 250px;
+    }
+    .music-notes {
+        width: 80px;
+        top: -40px;
+    }
 }
