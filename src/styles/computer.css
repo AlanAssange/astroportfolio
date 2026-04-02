@@ -35,3 +35,56 @@
 .loader-icon {
     width: 300px;
 }
+
+.boot-screen.lang-mode {
+    background-color: #000000;
+}
+
+.boot-screen.lang-mode .loader-icon {
+    width: 60px;
+    height: 60px;
+    content: url('https://unpkg.com/pixelarticons@latest/svg/loader.svg');
+    filter: invert(1);
+}
+
+.booting-terminal.boot-screen {
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.booting-terminal .terminal-loader {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #FFFFFF;
+}
+
+.booting-terminal .terminal-loader p {
+    margin: 2px 0;
+}
+
+.status-tag {
+    color: #660d99;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.boot-screen.lang-mode {
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boot-screen.lang-mode .loader-icon {
+    width: 200px;
+    animation: spin 1s linear infinite;
+    display: block;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }

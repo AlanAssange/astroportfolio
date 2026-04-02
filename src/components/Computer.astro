@@ -3,34 +3,126 @@ import Shortcut from "./Shortcuts";
 import Window from "./Window";
 import "../styles/computer.css";
 import { windowsConfig } from "../configs/windows";
-import NavBar from '../components/NavBar.astro';
-import PianoKnight from '../components/PianoKnight';
+import NavBar from "../components/NavBar.astro";
+import PianoKnight from "../components/PianoKnight";
 ---
+
 <div class="desktop">
   <div id="boot-loader" class="boot-screen">
     <div class="terminal-loader">
-      <img class="loader-icon" src="webicon.png"/>
+      <img class="loader-icon" src="webicon.png" />
     </div>
   </div>
-    <NavBar/>
-    {windowsConfig.map(win => (
-      <Shortcut label={win.label} icon={win.icon} target={`#${win.id}`} x={win.x} y={win.y} client:only="react"/>
-    ))}
+  <NavBar />
+  {
+    windowsConfig.map((win) => (
+      <Shortcut
+        label={win.label}
+        icon={win.icon}
+        target={`#${win.id}`}
+        x={win.x}
+        y={win.y}
+        client:only="react"
+      />
+    ))
+  }
 
-    {windowsConfig.map(win => (
+  {
+    windowsConfig.map((win) => (
       <Window id={win.id} title={win.title} client:only="react" />
-    ))}
-    <PianoKnight client:only="react"/>
+    ))
+  }
+  <PianoKnight client:only="react" />
 </div>
 
 <script is:inline>
-  window.addEventListener('load', () => {
-    const loader = document.getElementById('boot-loader');
-    
-    setTimeout(() => {
-      if (loader) {
-        loader.classList.add('hidden');
+  const loader = document.getElementById("boot-loader");
+  const terminalLoader = loader.querySelector(".terminal-loader");
+  const icon = terminalLoader.querySelector(".loader-icon");
+  const isLangSwitch = sessionStorage.getItem("isLangSwitch");
+
+  if (isLangSwitch === "true") {
+    if (loader) loader.classList.add("lang-mode");
+    sessionStorage.removeItem("isLangSwitch");
+
+    window.addEventListener("load", () => {
+      const delay = isLangSwitch === "true" ? 200 : 400;
+
+      setTimeout(() => {
+        if (loader) {
+          loader.classList.add("hidden");
+        }
+      }, delay);
+    });
+  } else {
+    loader.classList.add("booting-terminal");
+    if (icon) icon.remove();
+
+    const bootMessages = [
+      "Alan OS (Based on Debian stable) Kernel 6.1.0-18-amd64 on x86_64",
+      "",
+      "Loading initial ramdisk...",
+      "[ INFO ] Mounting API filesystems...",
+      "[ OK ] Starting udev Kernel Device Manager...",
+      "[ OK ] Reaching target Local File Systems (Pre)...",
+      "[ INFO ] Checking local filesystems...",
+      " /dev/nvme0n1p2: clean, 320/2048 files, 1.2G/8G blocks",
+      "[ OK ] Finished Checking local filesystems.",
+      "[ OK ] Reaching target Local File Systems.",
+      "[ STARTED ] Starting Astro Core Services...",
+      "[ OK ] Starting system logging service...",
+      "[ INFO ] Active: active (running) since " + new Date().toISOString(),
+      "[ OK ] Starting D-Bus Message Bus...",
+      "[ STARTED ] Loading Astro Desktop Assets...",
+      "[ INFO ] Gothic RPG background initialized.",
+      "[ INFO ] Loading components...",
+      "[ STARTED ] Initializing a tiny knight playing piano...",
+      "[ OK ] Started Piano Service.",
+      "[ OK ] Reached target Graphics Interface.",
+      "[ CREATED ] User session 'guest' initialized.",
+      "[ OK ] Astro Desktop Environment is Ready.",
+      "",
+      "Debian GNU/Linux 12 astro-pc tty1",
+      "astro-pc login: guest",
+      "Last login: " + new Date().toLocaleDateString(),
+      "Entering desktop...",
+      "...",
+    ];
+
+    let currentIndex = 0;
+
+    function parseStatusTags(msg) {
+      const regex = /\[ (.*?) \]/;
+      const match = msg.match(regex);
+
+      if (match) {
+        const tag = match[1];
+        const rest = msg.replace(match[0], "");
+        return `<span class="status-tag">[ ${tag} ]</span>${rest}`;
       }
-    }, 400); 
-  });
+      return msg;
+    }
+
+    function showNextBootLine() {
+      if (currentIndex < bootMessages.length) {
+        const line = document.createElement("p");
+        line.innerHTML = parseStatusTags(bootMessages[currentIndex]);
+        terminalLoader.appendChild(line);
+        terminalLoader.scrollTop = terminalLoader.scrollHeight;
+        // Generar delay aleatorio (más rápido o más lento) para realismo
+        const delay = Math.floor(Math.random() * 120 + 30);
+
+        currentIndex++;
+        setTimeout(showNextBootLine, delay);
+      } else {
+        setTimeout(() => {
+          if (loader) loader.classList.add("hidden");
+        }, 1000);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      showNextBootLine();
+    });
+  }
 </script>

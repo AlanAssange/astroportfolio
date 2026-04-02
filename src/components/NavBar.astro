@@ -29,7 +29,7 @@ import "../styles/navbar.css";
     const soundBtn = document.getElementById("soundBtn");
     const dateEl = document.getElementById("date");
 
-    let audioStarted = false; 
+    let audioStarted = false;
     let isMuted = true;
 
     let lang = localStorage.getItem("lang");
@@ -44,20 +44,22 @@ import "../styles/navbar.css";
       const current = localStorage.getItem("lang") || "en";
       const next = current === "es" ? "en" : "es";
       localStorage.setItem("lang", next);
+      sessionStorage.setItem("isLangSwitch", "true");
       location.reload();
     });
 
     function updateFlag(lang) {
-      langBtn.src = lang === "es"
-        ? "https://hatscripts.github.io/circle-flags/flags/ar.svg"
-        : "https://hatscripts.github.io/circle-flags/flags/us.svg";
+      langBtn.src =
+        lang === "es"
+          ? "https://hatscripts.github.io/circle-flags/flags/ar.svg"
+          : "https://hatscripts.github.io/circle-flags/flags/us.svg";
     }
 
     window.addEventListener("syncKnightAudio", (e) => {
       const { isMuted: newMutedStatus, started } = e.detail;
       audioStarted = started;
       isMuted = newMutedStatus;
-      
+
       soundBtn.src = isMuted
         ? "https://unpkg.com/pixelarticons@1.8.1/svg/volume-x.svg"
         : "https://unpkg.com/pixelarticons@1.8.1/svg/volume-2.svg";
@@ -75,9 +77,11 @@ import "../styles/navbar.css";
         ? "https://unpkg.com/pixelarticons@1.8.1/svg/volume-x.svg"
         : "https://unpkg.com/pixelarticons@1.8.1/svg/volume-2.svg";
 
-      window.dispatchEvent(new CustomEvent("syncKnightAudio", { 
-        detail: { isMuted: isMuted, started: audioStarted } 
-      }));
+      window.dispatchEvent(
+        new CustomEvent("syncKnightAudio", {
+          detail: { isMuted: isMuted, started: audioStarted },
+        }),
+      );
     });
 
     function updateDate() {
@@ -85,8 +89,11 @@ import "../styles/navbar.css";
       const locale = lang === "es" ? "es-AR" : "en-US";
 
       dateEl.textContent = new Date().toLocaleString(locale, {
-        day: "2-digit", month: "2-digit", year: "numeric",
-        hour: "2-digit", minute: "2-digit"
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
       });
     }
 

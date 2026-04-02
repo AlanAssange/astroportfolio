@@ -100,7 +100,7 @@ export default function Work() {
           <hr className="portfolio-divider" />
           <h3 className="project-subtitle">OTHER PROJECTS:</h3>
           <p className="project-description">
-            Check out my <strong><a href="https://github.com/AlanAssange" target="_blank">GitHub</a></strong> for additional projects (see this code as well!), ranging from early
+            Check out my <strong><a href="https://github.com/AlanAssange" target="_blank">GitHub</a></strong> for additional projects (see this portfolio code as well!), ranging from early
             professional work for local companies to personal coding experiments!.
           </p>
         </div>
