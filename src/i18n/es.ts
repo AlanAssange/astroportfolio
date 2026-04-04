@@ -30,7 +30,7 @@ const es = {
         secondUni: "Universidad de Luján",
         thirdTitle: "Ermitaño Autodidacta (∞)",
         thirdUni: "Siempre aprendiendo!!",
-        languageTitle: "COMPETENCIA LINGÜÍSTICA",
+        languageTitle: "LENGUAJES",
         languageOne: "Inglés - C2 (Avanzado)",
         languageTwo: "Español - Nativo",
         languageThree: "Alemán - Actualmente aprendiendo"
@@ -46,13 +46,27 @@ const es = {
     links: {
         links: "Todos mis enlaces"
     },
+    work:{
+        workOffers:"Aceptando ofertas laborales via",
+        tools:"HERRAMIENTAS",
+        dev:"DEVELOPMENT",
+        works:"TRABAJO",
+        claroServ:"CLARO SERVICIOS",
+        claroDesc:"Trabajo en Claro desde 2022 como Desarrollador Backend para el núcleo interno de sus servicios digitales. Me especializo en la infraestructura del área de pagos, asegurando seguridad y transacciones escalables de millones de usuarios en simultáneo.",
+        nakamaDesc:"Actualmente me encuentro construyendo una red social para entusiastas del coleccionismo anime en todos sus formatos. Está diseñado con el propósito de hermanar coleccionistas alrededor del mundo, proveyendo un espacio dedicado a mostrar sus colecciones y construir comunidad entre personas afines al pasatiempo. Los usuarios pueden crear nuevos contactos, intercambiar piezas individuales de forma segura o escalar sus negocios personales encontrando proveedores verificados.",
+        zett:"MIS ZETTELKASTENS!",
+        zettDesc:"Acá es donde transcurre la magia de mi propio conocimiento! Mantengo constantemente estos cerebros digitales, allí el motivo por el que los expongo. Pueden ver uno de ellos haciendo",
+        zettDescHere: "click aquí",
+        otherProjects:"OTROS PROYECTOS:",
+        otherDesc:"Los invito a mirar mi",
+        otherDescTwo:"a fin de visualizar proyectos adicionales (como el código de este portfolio!). Allí encontrarán proyectos que realicé para pequeñas compañías locales como experimentos personales código mediante."
+    },
     shortcuts: {
         links: "Enlaces",
         about: "Sobre Mí",
         work: "Trabajo",
         contact: "Contacto"
     }
-
 }
 
 export default es;

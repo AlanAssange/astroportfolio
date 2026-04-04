@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { getNextZIndex } from "../utils/zIndexManager";
 import { windowsConfig } from "../configs/windows";
@@ -18,13 +18,29 @@ export default function Window({
 }: WindowProps) {
   const { t, i18n } = useTranslation();
   const [ready, setReady] = useState(false);
+  const [isVisible, setIsVisible] = useState(defaultVisible);
   const windowRef = useRef<HTMLDivElement>(null);
   const titlebarRef = useRef<HTMLDivElement>(null);
   const dragOffset = useRef({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(defaultVisible);
-
   const windowData = windowsConfig.find(win => win.id === id);
   const ContentComponent = windowData?.Component;
+
+  const bringToFront = useCallback(() => {
+    if (windowRef.current) {
+      windowRef.current.style.zIndex = String(getNextZIndex());
+    }
+  }, []);
+
+  const centerWindow = useCallback(() => {
+    const win = windowRef.current;
+    if (!win) return;
+
+    const left = (window.innerWidth - win.offsetWidth) / 2;
+    const top = (window.innerHeight - win.offsetHeight) / 2;
+
+    win.style.left = `${Math.max(0, left)}px`;
+    win.style.top = `${Math.max(0, top)}px`;
+  }, []);
 
   useEffect(() => {
     const saved = localStorage.getItem('lang') || 'en';
@@ -36,24 +52,22 @@ export default function Window({
   }, [i18n]);
 
   useEffect(() => {
-    const openHandler = (e: CustomEvent<string>) => {
-      if (e.detail === id) {
-        setIsVisible(true);
-        setTimeout(() => bringToFront(), 50);
+    const openHandler = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail === id) {
+        bringToFront();
+        requestAnimationFrame(() => {
+          centerWindow();
+          setIsVisible(true);
+        });
       }
     };
-
-    window.addEventListener("open-window" as any, openHandler as EventListener);
+  
+    window.addEventListener("open-window", openHandler);
     return () => {
-      window.removeEventListener("open-window" as any, openHandler as EventListener);
+      window.removeEventListener("open-window", openHandler);
     };
-  }, [id]);
-
-  const bringToFront = () => {
-    if (windowRef.current) {
-      windowRef.current.style.zIndex = String(getNextZIndex());
-    }
-  };
+  }, [id, bringToFront, centerWindow]);
 
   useEffect(() => {
     if (!ready) return; 
@@ -108,9 +122,7 @@ export default function Window({
       document.removeEventListener("pointermove", onPointerMove);
       document.removeEventListener("pointerup", onPointerUp);
     };
-  }, [ready]);
-
-  if (!ready) return null;
+  }, [ready, bringToFront]);
 
   return (
     <div
@@ -128,7 +140,7 @@ export default function Window({
         <div className="controls">
           <button 
             className="close-btn" 
-            aria-label="cerrar" 
+            aria-label={t("cerrar")}
             onClick={() => setIsVisible(false)}
           >
             [X]
@@ -136,7 +148,7 @@ export default function Window({
         </div>
       </div>
       <div className="content">
-        {ContentComponent ? <ContentComponent /> : <p>Cargando...</p>}
+        {ContentComponent ? <ContentComponent /> : <p>{t("cargando", "Cargando...")}</p>}
       </div>
     </div>
   );

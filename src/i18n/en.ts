@@ -46,6 +46,21 @@ const en = {
     links:{
         links: "All my links"
     },
+    work:{
+        workOffers:"Accepting work offers via",
+        tools:"TOOLS",
+        dev:"DEVELOPMENT",
+        works:"WORK",
+        claroServ:"CLARO SERVICES",
+        claroDesc:"Working with Claro since 2022 as a Backend Developer for their core digital systems. I specialize in the payments infrastructure area, ensuring secure and scalable transactions for millions of users simultaneously.",
+        nakamaDesc:"Currently building a secure social marketplace for anime collectors. It aims to bridge the gap between enthusiasts, providing a dedicated space to showcase their collections and foster a strong, interaction-driven community. Users can connect with new contacts, safely trade items, or scale their business by sourcing from verified suppliers.",
+        zett:"MY ZETTELKASTENS!",
+        zettDesc:"This is where the magic of my own knowledge happens! I maintain constantly these digital brains so i put them here as my projects. You can watch one of them clicking",
+        zettDescHere: "here",
+        otherProjects:"OTHER PROJECTS:",
+        otherDesc:"Check out my",
+        otherDescTwo:"for additional projects (see this portfolio code as well!), ranging from early professional work for local companies to personal coding experiments!."
+    },
     shortcuts:{
         links:"Links",
         about:"About",

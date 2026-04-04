@@ -10,7 +10,7 @@ export const windowsConfig = [
     label: "shortcuts.about",
     icon: "/src/assets/icons/ballicon.png",
     x: 52,
-    y: 240,
+    y: 140,
     Component: AboutWindow,
   },
   {
@@ -19,7 +19,7 @@ export const windowsConfig = [
     label: "shortcuts.links",
     icon: "/src/assets/icons/linkicon.png",
     x: 52,
-    y: 120,
+    y: 380,
     Component: LinksWindow,
   },
   {
@@ -28,7 +28,7 @@ export const windowsConfig = [
     label: "shortcuts.work",
     icon: "/src/assets/icons/shieldicon.png",
     x: 52,
-    y: 360,
+    y: 260,
     Component: WorkWindow
   },
   {
@@ -37,7 +37,7 @@ export const windowsConfig = [
     label: "shortcuts.contact",
     icon: "/src/assets/icons/contacticon.png",
     x: 52,
-    y: 480,
+    y: 500,
     Component: ContactWindow,
   },
 ];

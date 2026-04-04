@@ -1,38 +1,52 @@
 .links-section {
     text-align: center;
     background: #fff9ef;
-}
-
-.links-section h2{
-    margin: 0;
-    padding-top: 20px;
-}
-
-.icon-map {
-    margin: 30px;
+    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
 }
 
-.icons-container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
+.links-section h2 {
+    margin: 0;
+    padding: 20px 0;
 }
 
-#icon-size {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    padding: 0 40px 20px 40px;
+}
+
+.link-card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 12px 20px;
+    background: #e0e0e0;
+    border: 2px solid #3a3a3a;
+    box-shadow: 3px 3px 0 #000;
+    text-decoration: none; 
+    color: #000;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.link-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 #000;
+    background: #eaeaea;
+}
+
+.link-card:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #000;
 }
 
 .contact-social {
     width: 40px;
-    transition: transform 0.4s ease;
-  }
-  
-  .contact-social:hover {
-    transform: scale(1.125);
-  }
+    height: 40px;
+    object-fit: contain;
+}

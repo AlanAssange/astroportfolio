@@ -1,24 +1,25 @@
 import React from "react";
-import claroServices from "../assets/images/claroservices.png";
+import claroServices from "../assets/images/claronames.png";
 import zettelKasten from "../assets/images/zettwo.png";
 import nakamaCollect from "../assets/images/nakamacollector.jpeg";
+import { useTranslation } from "react-i18next";
 import "../styles/work.css";
 
 export default function Work() {
+  const { t } = useTranslation();
   return (
     <div className="portfolio-container">
       <div className="portfolio-banner">
         <p className="banner-text">
-          Accepting work offers via{" "}
+          {t("work.workOffers")}{" "}
           <a href="mailto:alanjc27@gmail.com" className="banner-link">
             email!
           </a>
         </p>
-        <p className="banner-subtext">I do all what you see above.</p>
       </div>
       <div className="portfolio-grid">
         <div className="tools-column">
-          <h2 className="section-title">TOOLS</h2>
+          <h2 className="section-title">{t("work.tools")}</h2>
           <div className="badges-container">
             <span className="badge">Postman</span>
             <span className="badge">Wireshark</span>
@@ -33,7 +34,7 @@ export default function Work() {
         </div>
 
         <div className="dev-column">
-          <h2 className="section-title">DEVELOPMENT</h2>
+          <h2 className="section-title">{t("work.dev")}</h2>
           <div className="badges-container">
             <span className="badge">Python</span>
             <span className="badge">Bash</span>
@@ -47,61 +48,86 @@ export default function Work() {
         </div>
       </div>
 
-      <hr className="portfolio-divider" />
+      <div className="about-separator">
+        <span className="line"></span>
+        <img
+          src="src/assets/icons/dice.png"
+          alt="Divider icon"
+          className="separator-icon"
+        />
+        <span className="line"></span>
+      </div>
 
       <div className="work-section">
-        <h2 className="section-title">WORK</h2>
+        <h2 className="section-title">{t("work.works")}</h2>
         <div className="project-container">
-          <h3 className="project-subtitle">CLARO SERVICES</h3>
+          <h3 className="project-subtitle">{t("work.claroServ")}</h3>
           <img
             src={claroServices.src}
             alt="Claro services"
             className="project-image"
           />
-          <p className="project-description">
-            Working with Claro since 2022 as a Backend Developer for their core
-            digital system. I specialize in the payments infrastructure for
-            Claro Video, Claro Musica, and Claro Drive, ensuring secure and
-            scalable transactions for millions of users.
-          </p>
-
-          <hr className="portfolio-divider" />
-
+          <p className="project-description">{t("work.claroDesc")}</p>
+          <div className="about-separator">
+            <span className="line"></span>
+            <img
+              src="src/assets/icons/dice.png"
+              alt="Divider icon"
+              className="separator-icon"
+            />
+            <span className="line"></span>
+          </div>
           <h3 className="project-subtitle">NakamaCollector</h3>
-          <p className="project-description">
-            Currently building a secure social marketplace for anime
-            enthusiasts. It’s designed to bridge the gap between collectors and
-            the market, providing a dedicated space to showcase collections and
-            build community. Users can manage new contacts, safely trade
-            individual pieces, or scale their business by sourcing from verified
-            suppliers.
-          </p>
-
           <img
             src={nakamaCollect.src}
             alt="Collection and trade figure-cards app"
             className="project-image"
           />
-
-          <hr className="portfolio-divider" />
-
-          <h3 className="project-subtitle">MY ZETTELKASTENS!</h3>
+          <p className="project-description">{t("work.nakamaDesc")}</p>
+          <div className="about-separator">
+            <span className="line"></span>
+            <img
+              src="src/assets/icons/dice.png"
+              alt="Divider icon"
+              className="separator-icon"
+            />
+            <span className="line"></span>
+          </div>
+          <h3 className="project-subtitle">{t("work.zett")}</h3>
           <img
             src={zettelKasten.src}
             alt="Zettelkasten Knowledge Graph"
             className="project-image"
           />
           <p className="project-description">
-            This is where the magic of my own knowledge happens! I maintain
-            constantly these digital brains so i put them here as my projects.
-            You can watch one of them clicking <strong><a href="https://github.com/AlanAssange/securityarchive" target="_blank" >here</a></strong>
+          {t("work.zettDesc")}{" "}
+            <strong>
+              <a
+                href="https://github.com/AlanAssange/securityarchive"
+                target="_blank"
+              >
+                {t("work.zettDescHere")}
+              </a>
+            </strong>
           </p>
-
-          <hr className="portfolio-divider" />
-          <h3 className="project-subtitle">OTHER PROJECTS:</h3>
+          <div className="about-separator">
+            <span className="line"></span>
+            <img
+              src="src/assets/icons/dice.png"
+              alt="Divider icon"
+              className="separator-icon"
+            />
+            <span className="line"></span>
+          </div>{" "}
+          <h3 className="project-subtitle">{t("work.otherProjects")}</h3>
           <p className="project-description">
-            Check out my <strong><a href="https://github.com/AlanAssange" target="_blank">GitHub</a></strong> for additional projects (see this portfolio code as well!), ranging from early
-            professional work for local companies to personal coding experiments!.
+          {t("work.otherDesc")}{" "}
+            <strong>
+              <a href="https://github.com/AlanAssange" target="_blank">
+                GitHub
+              </a>
+            </strong>{" "}
+            {t("work.otherDescTwo")}
           </p>
         </div>
       </div>
