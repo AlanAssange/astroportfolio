@@ -6,12 +6,12 @@ const es = {
         className: "Desarrollador de software",
         subclass: "Subclase:",
         subclassName: "Estudiante de Ciberseguridad",
-        level: "Level:",
+        level: "Nivel:",
         levelNumber: "25",
         location: "Ubicación:",
         locationContent: "Buenos Aires, Argentina",
-        characterOverview: "Character Overview",
-        characterOverviewDesc: "Backend developer apasionado por los sistemas seguros, los aesthetics RPG y las interfaces old-school."
+        characterOverview: "Resumen de personaje",
+        characterOverviewDesc: "Backend developer apasionado por los sistemas seguros, las interfaces poco intuitivas y la estética de los juegos RPG de antaño. \n\nComencé mis aprendizajes informáticos a los siete años introduciendo la clave del ISP para poder jugar al counter strike 1.6! He aquí mi motivación para hacer de la pulsión que me llevó a entender cómo conectarme con mis amigos, la obra que describa mi vida tanto académica como profesional."
     },
 
     aboutData: {
@@ -22,7 +22,7 @@ const es = {
         swordTwo: "Construyo proyectos frontend en mi tiempo libre, utilizando IA  para asistirme con el apartado visual y los assets creativos que estarán visualizando!",
         swordThreeMaintain: "Mantengo varios",
         swordThreeZett: " Zettelkastens",
-        swordThreeContinue: "como parte de mi interés personal en construir procesos de conocimiento sobre Ciberseguridad y Filosofìa.",
+        swordThreeContinue: "como parte de mi interés personal en entablar redes de conocimiento sobre Ciberseguridad y Filosofìa.",
         educationTitle: "EDUCACION",
         firstTitle: "Licenciatura en Ciberseguridad (2024 - Presente)",
         firstUni: "Universidad FASTA Catherina.",

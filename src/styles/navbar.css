@@ -37,3 +37,69 @@
   height: 23px;
   filter: none;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.fantasy-window {
+  background-color: #fff9ef; 
+  color: #2d0a4e; 
+  width: 350px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.modal-header {
+  background: url('src/assets/images/castlewall.png');
+  background-size: cover;
+  color: #ffffff;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.modal-body {
+  padding: 30px 20px 10px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: black;
+}
+
+.modal-body p {
+  margin: 0 0 15px 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 30px; 
+  padding: 20px 20px 30px;
+}
+
+.fantasy-btn {
+  background-color: #fdfbf7;
+  color: #2d0a4e;
+  border: 2px solid #2d0a4e;
+  padding: 8px 25px;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #2d0a4e; 
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.fantasy-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0 #2d0a4e;
+}

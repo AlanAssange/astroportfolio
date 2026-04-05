@@ -11,7 +11,7 @@ const en = {
         location: "Location:",
         locationContent: "Buenos Aires, Argentina",
         characterOverview: "Character Overview",
-        characterOverviewDesc: "Backend-focused developer with passion for secure systems, RPG aesthetics and old-school interfaces."
+        characterOverviewDesc: "Backend-focused developer with passion for secure systems, unintuitive interfaces and the aesthetics of old-school RPG games. \n\n I started my journey in computing at the age of seven, entering my ISP password just to play Counter-Strike 1.6!. That moment sparked a curiosity that eventually grew into a passion: understanding how to connect with my friends and turning that drive into the work that defines my academic and professional life."
     },
 
     aboutData:{
