@@ -7,7 +7,7 @@ import "../styles/navbar.css";
     <img
       id="langBtn"
       class="icons"
-      src="https://unpkg.com/pixelarticons@latest/svg/languages.svg"
+      src="https://hatscripts.github.io/circle-flags/flags/us.svg"
     />
     <img
       id="soundBtn"
@@ -29,111 +29,111 @@ import "../styles/navbar.css";
 <div id="powerModal" class="modal-overlay" style="display: none;">
   <div class="modal-content fantasy-window">
     <div class="modal-header">
-      <span>Sistema</span>
+      <span id="t-system"></span>
     </div>
     <div class="modal-body">
-      <p>Estás a punto de cerrar la sesión...</p>
-      <p>¿Seguro que querés apagar el equipo?</p>
+      <p id="t-status"></p>
+      <p id="t-areusure"></p>
     </div>
     <div class="modal-actions">
-      <button id="btnYes" class="modal-btn fantasy-btn">SÍ</button>
-      <button id="btnNo" class="modal-btn fantasy-btn">NO</button>
+      <button id="btnYes" class="modal-btn fantasy-btn"></button>
+      <button id="btnNo" class="modal-btn fantasy-btn"></button>
     </div>
   </div>
 </div>
 
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const langBtn = document.getElementById("langBtn");
-    const soundBtn = document.getElementById("soundBtn");
-    const dateEl = document.getElementById("date");
-    
-    const powerBtn = document.getElementById("powerBtn");
-    const powerModal = document.getElementById("powerModal");
-    const btnYes = document.getElementById("btnYes");
-    const btnNo = document.getElementById("btnNo");
+<script>
+  import i18next from "../i18n/i18n";
+
+  declare global {
+    interface Window {
+      knightAudio?: HTMLAudioElement;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    const langBtn = document.getElementById("langBtn") as HTMLImageElement;
+    const soundBtn = document.getElementById("soundBtn") as HTMLImageElement;
+    const powerBtn = document.getElementById("powerBtn") as HTMLImageElement;
+    const powerModal = document.getElementById("powerModal") as HTMLDivElement;
+    const btnYes = document.getElementById("btnYes") as HTMLButtonElement;
+    const btnNo = document.getElementById("btnNo") as HTMLButtonElement;
+    const dateEl = document.getElementById("date") as HTMLDivElement;
+
+    const translateUI = () => {
+      const els: Record<string, string> = {
+        "t-system": "navbar.system",
+        "t-status": "navbar.status",
+        "t-areusure": "navbar.areusure",
+        "btnYes": "navbar.yes",
+        "btnNo": "navbar.no"
+      };
+      for (const [id, key] of Object.entries(els)) {
+        document.getElementById(id)!.textContent = i18next.t(key);
+      }
+    };
+
+    const updateFlag = (lang: string) => {
+      langBtn.src = lang === "es" 
+        ? "https://hatscripts.github.io/circle-flags/flags/ar.svg" 
+        : "https://hatscripts.github.io/circle-flags/flags/us.svg";
+    };
+
+    const updateDate = () => {
+      const currentLang = localStorage.getItem("lang") || "en";
+      dateEl.textContent = new Date().toLocaleString(currentLang === "es" ? "es-AR" : "en-US", {
+        day: "2-digit", month: "2-digit", year: "numeric",
+        hour: "2-digit", minute: "2-digit",
+      });
+    };
+
+    let lang = localStorage.getItem("lang");
+    if (!lang) {
+      lang = navigator.language.startsWith("es") ? "es" : "en";
+      localStorage.setItem("lang", lang);
+    }
+
+    await i18next.changeLanguage(lang);
+    translateUI();
+    updateFlag(lang);
+    updateDate();
+    setInterval(updateDate, 1000);
+
+    langBtn.addEventListener("click", async () => {
+      const next = localStorage.getItem("lang") === "es" ? "en" : "es";
+      localStorage.setItem("lang", next);
+      await i18next.changeLanguage(next);
+      translateUI();
+      updateFlag(next);
+      updateDate();
+    });
 
     let audioStarted = false;
     let isMuted = true;
 
-    let lang = localStorage.getItem("lang");
-    if (!lang) {
-      const browserLang = navigator.language || "en";
-      lang = browserLang.startsWith("es") ? "es" : "en";
-      localStorage.setItem("lang", lang);
-    }
-    updateFlag(lang);
-
-    langBtn.addEventListener("click", () => {
-      const current = localStorage.getItem("lang") || "en";
-      const next = current === "es" ? "en" : "es";
-      localStorage.setItem("lang", next);
-      sessionStorage.setItem("isLangSwitch", "true");
-      location.reload();
-    });
-
-    function updateFlag(lang) {
-      langBtn.src =
-        lang === "es"
-          ? "https://hatscripts.github.io/circle-flags/flags/ar.svg"
-          : "https://hatscripts.github.io/circle-flags/flags/us.svg";
-    }
-
-    window.addEventListener("syncKnightAudio", (e) => {
-      const { isMuted: newMutedStatus, started } = e.detail;
-      audioStarted = started;
-      isMuted = newMutedStatus;
-
+    const updateSoundIcon = () => {
       soundBtn.src = isMuted
         ? "https://unpkg.com/pixelarticons@1.8.1/svg/volume-x.svg"
         : "https://unpkg.com/pixelarticons@1.8.1/svg/volume-2.svg";
-    });
+    };
+
+    window.addEventListener("syncKnightAudio", ((e: CustomEvent<{isMuted: boolean, started: boolean}>) => {
+      audioStarted = e.detail.started;
+      isMuted = e.detail.isMuted;
+      updateSoundIcon();
+    }) as EventListener);
 
     soundBtn.addEventListener("click", () => {
       isMuted = !isMuted;
-      const audio = window.knightAudio;
-
-      if (audio) {
-        audio.muted = isMuted;
-      }
-
-      soundBtn.src = isMuted
-        ? "https://unpkg.com/pixelarticons@1.8.1/svg/volume-x.svg"
-        : "https://unpkg.com/pixelarticons@1.8.1/svg/volume-2.svg";
-
-      window.dispatchEvent(
-        new CustomEvent("syncKnightAudio", {
-          detail: { isMuted: isMuted, started: audioStarted },
-        }),
-      );
+      if (window.knightAudio) window.knightAudio.muted = isMuted;
+      updateSoundIcon();
+      window.dispatchEvent(new CustomEvent("syncKnightAudio", {
+        detail: { isMuted, started: audioStarted }
+      }));
     });
 
-    function updateDate() {
-      const lang = localStorage.getItem("lang") || "en";
-      const locale = lang === "es" ? "es-AR" : "en-US";
-
-      dateEl.textContent = new Date().toLocaleString(locale, {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-    }
-
-    updateDate();
-    setInterval(updateDate, 1000);
-
-    powerBtn.addEventListener("click", () => {
-      powerModal.style.display = "flex";
-    });
-
-    btnNo.addEventListener("click", () => {
-      powerModal.style.display = "none";
-    });
-
-    btnYes.addEventListener("click", () => {
-      window.location.href = "/thankyou";
-    });
+    powerBtn.addEventListener("click", () => powerModal.style.display = "flex");
+    btnNo.addEventListener("click", () => powerModal.style.display = "none");
+    btnYes.addEventListener("click", () => window.location.href = "/thankyou");
   });
 </script>

@@ -1,7 +1,7 @@
 const en = {
 
     aboutHeader:{
-        name: "Alan Javier Canellas",
+        name: "Alan Javier Cañellas",
         class: "Class:",
         className: "Software Developer",
         subclass: "Subclass:",
@@ -38,10 +38,10 @@ const en = {
     },
     contact:{
         contactTitle:"Get in touch!",
-        contactSubtitle:"the easiest way to contact me is through email or linkedin",
+        contactSubtitle:"through email or linkedin.",
         email:"email me at:",
         emailDom:"alanjc27@gmail.com",
-        emailPress:"or press the icons below to open your apps."
+        emailPress:"or press the icons below to open your respective apps."
     },
     links:{
         links: "All my links"
@@ -61,6 +61,20 @@ const en = {
         otherDesc:"Check out my",
         otherDescTwo:"for additional projects (see this portfolio code as well!), ranging from early professional work for local companies to personal coding experiments!."
     },
+    end:{
+        shutDown: "Shutting down...",
+        greetings: "Thank you!",
+        greetingsPar: "I am completing this project today, April 5, 2026, having started this journey back in November 2025. It fills me with pride to see the final result, as bringing something to a close in times like these requires transcending the ephemeral. And I believe that is where the true challenge resides. \n\nThank you for making it this far. A big hug if you need it—and even if you don’t.",
+        shortRest: "If you feel like rebooting the OS, click",
+        shortHere: "here"
+    },
+    navbar:{
+        system: "System",
+        status: "You are about to close session...",
+        areusure:"Shut down the system?",
+        yes: "YES",
+        no: "NO"
+    },  
     shortcuts:{
         links:"Links",
         about:"About",

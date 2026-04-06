@@ -1,16 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "../styles/end.css";
+import i18next from "../i18n/i18n";
+import { useTranslation } from 'react-i18next';
 
 export default function End() {
   const [isShuttingDown, setIsShuttingDown] = useState(true);
+  const [isReady, setIsReady] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsShuttingDown(false); 
-    }, 2000);
+    let timer: ReturnType<typeof setTimeout>;
 
-    return () => clearTimeout(timer);
-  }, []); 
+    const init = async () => {
+      const lang = localStorage.getItem("lang") || "en";
+  
+      if (i18next.language !== lang) {
+        await i18next.changeLanguage(lang);
+      }
+  
+      setIsReady(true);
+  
+      timer = setTimeout(() => {
+        setIsShuttingDown(false);
+      }, 2000);
+    };
+  
+    init();
+  
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <div className="end-container">
@@ -18,19 +38,19 @@ export default function End() {
       <div className="gothic-modal">
         {isShuttingDown ? (
           <div className="modal-content shutting-down">
-            <h1>Apagando el equipo...</h1>
+            <h1>{t("end.shutDown")}</h1>
             <div className="spinner"></div>
           </div>
         ) : (
           <div className="modal-content thank-you">
-            <h1>Gracias!</h1>
-            <p className="paragraph-text">
-              Estoy finalizando este proyecto el 5 de Abril de 2026, con recuerdos de haberlo iniciado en Noviembre 2025. Me llena de orgullo ver el resultado ya que dar un punto final sobre los tiempos que corren requiere ir mas allá de lo fugaz. Y considero que allí se encuentran los verdaderos desafíos. <br/><br/>Te agradezco por haber llegado hasta acá. Un fuerte abrazo si lo necesitás, y si no, también.
+            <h1>{t("end.greetings")}</h1>
+            <p style={{ whiteSpace: "pre-line" }} className="paragraph-text">
+            {t("end.greetingsPar")}
             </p>
-            <p className="signature-text">Alan Javier Canellas</p>
+            <p className="signature-text">Alan Javier Cañellas</p>
             <p className="quote-text">
-              Si tenés ganas de volver a bootear el OS, hace click <a href="/">
-                acá 
+            {t("end.shortRest")} <a className="hereFormat" href="/">
+            {t("end.shortHere")} 
               </a>
             </p>
           </div>

@@ -38,10 +38,10 @@ const es = {
     },
     contact: {
         contactTitle: "Contactame!",
-        contactSubtitle: "la forma mas sencilla de contactarme es por email o linkedin",
+        contactSubtitle: "por email o linkedin :)",
         email: "mandame un mail a:",
         emailDom: "alanjc27@gmail.com",
-        emailPress: "o apretá en los iconos debajo para abrir tus apps."
+        emailPress: "o apretá en los iconos debajo para abrir tus respectivas apps."
     },
     links: {
         links: "Todos mis enlaces"
@@ -61,6 +61,20 @@ const es = {
         otherDesc:"Los invito a mirar mi",
         otherDescTwo:"a fin de visualizar proyectos adicionales (como el código de este portfolio!). Allí encontrarán proyectos que realicé para pequeñas compañías locales como experimentos personales código mediante."
     },
+    end:{
+        shutDown: "Apagando el equipo...",
+        greetings: "Gracias!",
+        greetingsPar: "Estoy finalizando este proyecto el 5 de Abril de 2026, con recuerdos de haberlo iniciado en Noviembre 2025. Me llena de orgullo ver el resultado ya que dar un punto final sobre los tiempos que corren requiere ir mas allá de lo fugaz. Y considero que allí se encuentran los verdaderos desafíos. \n\nTe agradezco por haber llegado hasta acá. Un fuerte abrazo si lo necesitás, y si no, también.",
+        shortRest: "Si tenés ganas de volver a bootear el OS, hace click",
+        shortHere: "acá"
+    }, 
+    navbar:{
+        system: "Sistema",
+        status: "Estás a punto de cerrar sesión...",
+        areusure:"¿Apagar el equipo?",
+        yes: "SI",
+        no: "NO"
+    }, 
     shortcuts: {
         links: "Enlaces",
         about: "Sobre Mí",
