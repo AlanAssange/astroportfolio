@@ -40,7 +40,7 @@ const es = {
         contactTitle: "Contactame!",
         contactSubtitle: "por email o linkedin :)",
         email: "mandame un mail a:",
-        emailDom: "alanjc27@gmail.com",
+        emailDom: "alan.codeworks@protonmail.com",
         emailPress: "o apretá en los iconos debajo para abrir tus respectivas apps."
     },
     links: {

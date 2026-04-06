@@ -18,14 +18,14 @@ export default function ContactWindow() {
       />
 
       <p className="contact-email">
-      {t("contact.email")} <a href="mailto:alanjc27@gmail.com">{t("contact.emailDom")}</a>
+      {t("contact.email")} <a href="mailto:alan.codeworks@protonmail.com">{t("contact.emailDom")}</a>
       </p>
 
       <p className="contact-gray">
       {t("contact.emailPress")}
       </p>
 
-      <a href="mailto:alanjc27@gmail.com" className="contact-button" target="_blank"> 
+      <a href="mailto:alan.codeworks@protonmail.com" className="contact-button" target="_blank"> 
         <img className="contact-social" src='src/assets/icons/gmail.png' />
       </a>
       <a href="https://www.linkedin.com/in/alanjaviercanellas/" className="contact-button" target="_blank">

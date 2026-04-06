@@ -12,7 +12,7 @@ export default function Work() {
       <div className="portfolio-banner">
         <p className="banner-text">
           {t("work.workOffers")}{" "}
-          <a href="mailto:alanjc27@gmail.com" className="banner-link">
+          <a href="mailto:alan.codeworks@protonmail.com" className="banner-link">
             email!
           </a>
         </p>

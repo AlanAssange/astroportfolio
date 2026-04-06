@@ -39,7 +39,7 @@ export default function LinksWindow() {
         </a>
 
         <a
-          href="mailto:alanjc27@gmail.com"
+          href="mailto:alan.codeworks@protonmail.com"
           target="_blank"
           rel="noopener noreferrer"
           className="link-card"

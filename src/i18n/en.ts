@@ -40,7 +40,7 @@ const en = {
         contactTitle:"Get in touch!",
         contactSubtitle:"through email or linkedin.",
         email:"email me at:",
-        emailDom:"alanjc27@gmail.com",
+        emailDom:"alan.codeworks@protonmail.com",
         emailPress:"or press the icons below to open your respective apps."
     },
     links:{
