@@ -1,5 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import linkedinEdited from "../assets/icons/linked.png";
+import githubEdited from "../assets/icons/githublair.png";
+import gmailEdited from "../assets/icons/gmailair.png";
 import "../styles/links.css";
 
 export default function LinksWindow() {
@@ -18,7 +21,7 @@ export default function LinksWindow() {
         >
           <img
             className="contact-social"
-            src="src/assets/icons/linked.png"
+            src={linkedinEdited.src}
             alt="LinkedIn"
           />
           <span>Linkedin</span>
@@ -32,7 +35,7 @@ export default function LinksWindow() {
         >
           <img
             className="contact-social"
-            src="src/assets/icons/githublair.png"
+            src={githubEdited.src}
             alt="Github"
           />
           <span>Github</span>
@@ -46,7 +49,7 @@ export default function LinksWindow() {
         >
           <img
             className="contact-social"
-            src="src/assets/icons/gmailair.png"
+            src={gmailEdited.src}
             alt="Gmail"
           />
           <span>Gmail</span>

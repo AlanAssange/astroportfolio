@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../styles/pianoknight.css";
+import pianoKnightImg from "/src/assets/images/pianoknight.png";
+import pianoKnightHappy from "/src/assets/images/happyknight.png";
+import notesImg from "../assets/images/musicnotes.png"
 
 export default function PianoKnight() {
   const [started, setStarted] = useState(false);
@@ -50,21 +53,21 @@ export default function PianoKnight() {
 
   const isPlaying = started && !isMuted;
   const knightImage = isPlaying 
-    ? "/src/assets/images/happyknight.png" 
-    : "/src/assets/images/pianoknight.png";
+    ? pianoKnightHappy
+    : pianoKnightImg;
 
   return (
     <div className="knight-container">
       {isPlaying && (
         <img 
-          src="/src/assets/images/musicnotes.png" 
+          src={notesImg.src}
           className="music-notes" 
           alt="Notes"
         />
       )}
       <img
         className="piano-knight"
-        src={knightImage}
+        src={knightImage.src}
         onClick={handleStartSound}
         alt="Piano Knight"
       />

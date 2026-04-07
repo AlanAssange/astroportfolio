@@ -1,4 +1,7 @@
 import "../styles/contact.css";
+import cosmicKnight from "../assets/images/voidknight.png";
+import linkedIn from "../assets/icons/linkedin.svg"
+import gmail from "../assets/icons/gmail.png";
 import { useTranslation } from 'react-i18next';
 
 export default function ContactWindow() {
@@ -12,7 +15,7 @@ export default function ContactWindow() {
       </p>
 
       <img
-        src="../src/assets/images/voidknight.png"
+        src={cosmicKnight.src}
         alt="Mailcat"
         className="contact-illustration"
       />
@@ -26,10 +29,10 @@ export default function ContactWindow() {
       </p>
 
       <a href="mailto:alan.codeworks@protonmail.com" className="contact-button" target="_blank"> 
-        <img className="contact-social" src='src/assets/icons/gmail.png' />
+        <img className="contact-social" src={gmail.src} />
       </a>
       <a href="https://www.linkedin.com/in/alanjaviercanellas/" className="contact-button" target="_blank">
-        <img className="contact-social" src='src/assets/icons/linkedin.svg' />
+        <img className="contact-social" src={linkedIn.src} />
       </a>
     </div>
   );

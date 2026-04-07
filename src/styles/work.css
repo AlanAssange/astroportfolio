@@ -10,7 +10,7 @@
   }
 
   .portfolio-banner {
-    background: url('src/assets/images/castlewall.png');
+    background: url('../assets/images/castlewall.png');
     background-size: cover;
     padding: 20px;
     border-radius: 4px;

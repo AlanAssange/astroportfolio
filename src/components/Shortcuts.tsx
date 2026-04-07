@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import "../i18n/i18n"; // Tu configuración de idioma
+import "../i18n/i18n";
 import "../styles/shortcuts.css";
 
 interface ShortcutProps {

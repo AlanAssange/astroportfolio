@@ -1,5 +1,7 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
+import profileRefactor from "../assets/images/profilerefactor.png"
+import diceDivider from "../assets/icons/dice.png";
 import "../styles/about.css";
 
 export default function AboutWindow() {
@@ -10,7 +12,7 @@ export default function AboutWindow() {
     <div className="about-window">
       <div className="about-header">
         <img
-          src="src/assets/images/profilerefactor.png"
+          src={profileRefactor.src}
           alt="Profile picture"
           className="about-avatar"
         />
@@ -33,7 +35,7 @@ export default function AboutWindow() {
       <div className="about-separator">
         <span className="line"></span>
         <img
-          src="src/assets/icons/dice.png"
+          src={diceDivider.src}
           alt="Divider icon"
           className="separator-icon"
         />
@@ -57,7 +59,7 @@ export default function AboutWindow() {
         <div className="about-separator">
           <span className="line"></span>
           <img
-            src="src/assets/icons/dice.png"
+            src={diceDivider.src}
             alt="Divider icon"
             className="separator-icon"
           />
@@ -83,7 +85,7 @@ export default function AboutWindow() {
         <div className="about-separator">
           <span className="line"></span>
           <img
-            src="src/assets/icons/dice.png"
+            src={diceDivider.src}
             alt="Divider icon"
             className="separator-icon"
           />

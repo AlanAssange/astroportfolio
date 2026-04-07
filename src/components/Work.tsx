@@ -2,6 +2,7 @@ import React from "react";
 import claroServices from "../assets/images/claronames.png";
 import zettelKasten from "../assets/images/zettwo.png";
 import nakamaCollect from "../assets/images/nakamacollector.jpeg";
+import diceDivider from "../assets/icons/dice.png";
 import { useTranslation } from "react-i18next";
 import "../styles/work.css";
 
@@ -51,7 +52,7 @@ export default function Work() {
       <div className="about-separator">
         <span className="line"></span>
         <img
-          src="src/assets/icons/dice.png"
+          src={diceDivider.src}
           alt="Divider icon"
           className="separator-icon"
         />
@@ -71,7 +72,7 @@ export default function Work() {
           <div className="about-separator">
             <span className="line"></span>
             <img
-              src="src/assets/icons/dice.png"
+              src={diceDivider.src}
               alt="Divider icon"
               className="separator-icon"
             />
@@ -87,7 +88,7 @@ export default function Work() {
           <div className="about-separator">
             <span className="line"></span>
             <img
-              src="src/assets/icons/dice.png"
+              src={diceDivider.src}
               alt="Divider icon"
               className="separator-icon"
             />
@@ -113,7 +114,7 @@ export default function Work() {
           <div className="about-separator">
             <span className="line"></span>
             <img
-              src="src/assets/icons/dice.png"
+              src={diceDivider.src}
               alt="Divider icon"
               className="separator-icon"
             />
