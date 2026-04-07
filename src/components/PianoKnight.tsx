@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../styles/pianoknight.css";
 import pianoKnightImg from "/src/assets/images/pianoknight.png";
 import pianoKnightHappy from "/src/assets/images/happyknight.png";
-import notesImg from "../assets/images/musicnotes.png"
+import notesImg from "../assets/images/musicnotes.png";
+import musicGrausam from "../assets/sounds/grausamkeit.mp3";
 
 export default function PianoKnight() {
   const [started, setStarted] = useState(false);
@@ -21,7 +22,7 @@ export default function PianoKnight() {
     let audio = (window as any).knightAudio;
 
     if (!audio) {
-      audio = new Audio("/src/assets/sounds/grausamkeit.mp3");
+      audio = new Audio(musicGrausam);
       audio.loop = true;
       audio.volume = 0.4;
       (window as any).knightAudio = audio;
