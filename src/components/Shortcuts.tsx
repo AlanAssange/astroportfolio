@@ -4,6 +4,7 @@ import "../i18n/i18n";
 import "../styles/shortcuts.css";
 
 interface ShortcutProps {
+  id:string,
   label: string;
   icon: string;
   target: string;
@@ -11,9 +12,10 @@ interface ShortcutProps {
   y?: number;
 }
 
-export default function Shortcut({ label, icon, target, x = 20, y = 20 }: ShortcutProps) {
+export default function Shortcut({ id, label, icon, target, x = 20, y = 20 }: ShortcutProps) {
   const { t, i18n } = useTranslation();
   const [ready, setReady] = useState(false);
+  const [pos, setPos] = useState({ x, y });
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,13 +28,41 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
   }, [i18n]);
 
   useEffect(() => {
+    const calculatePosition = () => {
+      if (window.innerWidth <= 768) {
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        
+        const gapX = 95; 
+        const gapY = 100; 
+
+        const mobilePositions: Record<string, { x: number, y: number }> = {
+          "win-lab":     { x: centerX - gapX, y: centerY - gapY }, 
+          "win-work":    { x: centerX + 5,    y: centerY - gapY },
+          "win-links":   { x: centerX - gapX, y: centerY + 5 },
+          "win-contact": { x: centerX + 5,    y: centerY + 33 },
+        };
+
+        setPos(mobilePositions[id] || { x, y });
+      } else {
+        setPos({ x, y });
+      }
+    };
+
+    calculatePosition();
+    window.addEventListener("resize", calculatePosition); 
+    
+    return () => window.removeEventListener("resize", calculatePosition);
+  }, [id, x, y]);
+
+  useEffect(() => {
     if (!ready) return;
 
     const el = ref.current;
     if (!el) return;
 
     let startX = 0, startY = 0;
-    let startLeft = x, startTop = y;
+    let startLeft = pos.x, startTop = pos.y;
 
     const onPointerDown = (e: PointerEvent) => {
       if (e.button !== 0) return;
@@ -94,7 +124,7 @@ export default function Shortcut({ label, icon, target, x = 20, y = 20 }: Shortc
     <div
       ref={ref}
       className="shortcut"
-      style={{ left: `${x}px`, top: `${y}px` }}
+      style={{ left: `${pos.x}px`, top: `${pos.y}px` }}
       role="button"
       aria-label={t(label)}
     >

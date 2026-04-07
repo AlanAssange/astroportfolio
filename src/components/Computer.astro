@@ -17,6 +17,7 @@ import PianoKnight from "../components/PianoKnight";
   {
     windowsConfig.map((win) => (
       <Shortcut
+        id={win.id}
         label={win.label}
         icon={win.icon}
         target={`#${win.id}`}

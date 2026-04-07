@@ -34,9 +34,9 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
     .knight-container {
-        width: 350px;
+        width: 370px;
     }
     .music-notes {
         width: 150px;
