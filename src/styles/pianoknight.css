@@ -1,15 +1,13 @@
 .knight-container {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: -32px;
+    right: -10px;
     width: 450px;
     max-width: 100vw;
-    transform: translate(10px, 32px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden;
-    overflow-y: clip;
+    overflow: visible; 
 }
 
 .piano-knight {

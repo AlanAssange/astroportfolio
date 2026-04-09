@@ -19,11 +19,20 @@ export default function Window({
   const { t, i18n } = useTranslation();
   const [ready, setReady] = useState(false);
   const [isVisible, setIsVisible] = useState(defaultVisible);
+  const [isMobile, setIsMobile] = useState(false);
+  
   const windowRef = useRef<HTMLDivElement>(null);
   const titlebarRef = useRef<HTMLDivElement>(null);
   const dragOffset = useRef({ x: 0, y: 0 });
   const windowData = windowsConfig.find(win => win.id === id);
   const ContentComponent = windowData?.Component;
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile(); // Check inicial
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const bringToFront = useCallback(() => {
     if (windowRef.current) {
@@ -34,6 +43,12 @@ export default function Window({
   const centerWindow = useCallback(() => {
     const win = windowRef.current;
     if (!win) return;
+
+    if (window.innerWidth <= 768) {
+      win.style.left = "";
+      win.style.top = "";
+      return;
+    }
 
     const left = (window.innerWidth - win.offsetWidth) / 2;
     const top = (window.innerHeight - win.offsetHeight) / 2;
@@ -70,16 +85,15 @@ export default function Window({
   }, [id, bringToFront, centerWindow]);
 
   useEffect(() => {
-    if (!ready) return; 
+    if (!ready || isMobile) return; 
 
     const titlebar = titlebarRef.current;
     const win = windowRef.current;
     if (!titlebar || !win) return;
 
     const onPointerDown = (e: PointerEvent) => {
-      if ((e.target as HTMLElement).closest('.controls')) {
-        return; 
-      }
+      if ((e.target as HTMLElement).closest('.controls')) return; 
+      
       bringToFront();
       const rect = win.getBoundingClientRect();
 
@@ -122,19 +136,18 @@ export default function Window({
       document.removeEventListener("pointermove", onPointerMove);
       document.removeEventListener("pointerup", onPointerUp);
     };
-  }, [ready, bringToFront]);
+  }, [ready, isMobile, bringToFront]);
 
   return (
     <div
       ref={windowRef}
       id={id}
       className={`window ${isVisible ? "" : "hidden"}`}
-      style={{ position: "absolute" }}
       role="dialog"
       aria-label={t(title)}
       onPointerDown={bringToFront}
     >
-      <div ref={titlebarRef} className="titlebar" style={{ cursor: "move" }}>
+      <div ref={titlebarRef} className="titlebar">
         <span className="title-text">{t(title)}</span> 
         
         <div className="controls">
