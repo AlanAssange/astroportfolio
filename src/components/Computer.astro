@@ -110,7 +110,6 @@ import PianoKnight from "../components/PianoKnight";
         line.innerHTML = parseStatusTags(bootMessages[currentIndex]);
         terminalLoader.appendChild(line);
         terminalLoader.scrollTop = terminalLoader.scrollHeight;
-        // Generar delay aleatorio (más rápido o más lento) para realismo
         const delay = Math.floor(Math.random() * 120 + 30);
 
         currentIndex++;

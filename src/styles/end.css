@@ -9,16 +9,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   color: #ffffff;
   text-align: left;
-  background: url('../assets/images/end.png'); 
+  background: url('../assets/images/end.png') no-repeat center center; 
   background-size: cover;
-  background-position: center;
-  overflow: hidden;
+  overflow-x: hidden;
+  padding: 20px; 
 }
-
 
 .dark-overlay {
   position: absolute;
@@ -30,31 +29,67 @@
   z-index: 1;
 }
 
-
 .gothic-modal {
   position: relative;
   z-index: 2;
   background-color: rgba(15, 15, 15, 0.95); 
   border: 1px solid #3a3a3a;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 1), inset 0px 0px 15px rgba(0, 0, 0, 0.8);
-  padding: 3rem 2rem;
+  padding: 2.5rem;
   border-radius: 4px;
-  max-width: 600px;
-  width: 90%;
-}
-
-.gothic-modal h1 {
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
-  font-size: 2.5rem;
-  letter-spacing: 2px;
-  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 650px;
+  max-height: 90vh;
+  overflow-y: auto; 
 }
 
 .modal-content {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+.gothic-modal h1 {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.paragraph-text {
+  font-size: clamp(1rem, 2.5vw, 1.2rem); 
+  line-height: 1.6;
+  color: #cccccc;
+  margin-bottom: 1rem;
+}
+
+.signature-text {
+  width: 100%;
+  text-align: right;
+  font-size: 1.1rem;
+  color: #ffffff;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.quote-text {
+  font-size: 0.85rem;
+  color: #777777;
+  font-style: italic;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.hereFormat {
+  color: #b3b3b3;
+  text-decoration: underline;
+}
+
+.shutting-down {
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
 }
 
 .spinner {
@@ -67,36 +102,52 @@
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .gothic-modal {
+    padding: 2rem 1.5rem;
   }
 }
 
-.paragraph-text {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #cccccc;
-  margin-bottom: 1rem;
+@media (max-width: 480px) {
+  .end-container {
+    padding: 15px;
+  }
+
+  .gothic-modal {
+    padding: 1.5rem 1rem;
+    width: 95%;
+  }
+
+  .paragraph-text {
+    text-align: justify;
+  }
+
+  .signature-text {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 
-.quote-text {
-  font-size: 0.9rem;
-  color: #777777;
-  font-style: italic;
-  margin-top: 1rem;
-}
+@media (max-height: 450px) or (max-width: 320px) {
+  .gothic-modal {
+    padding: 1rem;
+  }
 
-.signature-text {
-  width: 100%;
-  text-align: right;
-  font-size: 1.1rem;
-  color: #ffffff;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
-}
+  .gothic-modal h1 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
 
-.hereFormat{
-  color: #b3b3b3;
-  text-decoration: underline;
+  .paragraph-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .signature-text {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
 }
