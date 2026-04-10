@@ -134,6 +134,10 @@
     height: auto;
     image-rendering: pixelated;
   }
+
+  a:visited{
+    color: #32084b;
+  }
   
   @media (max-width: 768px) {
     .portfolio-grid {

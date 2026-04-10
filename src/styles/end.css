@@ -87,6 +87,11 @@
   text-decoration: underline;
 }
 
+.hereFormat:visited {
+  color: #b3b3b3;
+  text-decoration: underline;
+}
+
 .shutting-down {
   align-items: center;
   justify-content: center;
@@ -99,6 +104,7 @@
   border-top-color: #888;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+  margin-top: 20px;
 }
 
 @keyframes spin {

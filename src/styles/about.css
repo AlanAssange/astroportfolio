@@ -109,3 +109,36 @@ li::before {
   color: #32084b;
   margin-right: 8px;
 }
+
+a:visited{
+  color: #32084b;
+}
+
+@media (max-width: 768px) {
+  .about-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  #overview-title{
+    text-align: center;
+  }
+
+  .about-flex-header {
+    align-items: center;
+  }
+
+  .about-avatar {
+    width: 160px; 
+    margin-right: 0;
+  }
+
+  .about-header-columns {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+}

@@ -26,8 +26,8 @@ export default function AboutWindow() {
               <p><strong className="about-titles">{t('aboutHeader.location')}</strong> {t('aboutHeader.locationContent')}</p>
             </div>
             <div className="about-overview">
-              <h3 className="about-titles">{t('aboutHeader.characterOverview')}</h3>
-              <p style={{ whiteSpace: "pre-line" }}>{t('aboutHeader.characterOverviewDesc')}</p>
+              <h3 className="about-titles" id="overview-title">{t('aboutHeader.characterOverview')}</h3>
+              <p id="overview-title" style={{ whiteSpace: "pre-line" }}>{t('aboutHeader.characterOverviewDesc')}</p>
             </div>
           </div>
         </div>
