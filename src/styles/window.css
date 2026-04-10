@@ -23,7 +23,7 @@
     color: white;
     padding: 6px 8px;
     cursor: grab;
-    font-weight: bold;
+    font-weight: 400;
     display: flex;
     justify-content: space-between;
     align-items: center;

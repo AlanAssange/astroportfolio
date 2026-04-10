@@ -3,9 +3,10 @@
   flex-direction: column;
   font-family: 'mezalia-regular';
   max-width: 850px;
-  height: calc(80vh - 4rem);
+  height: calc(80svh - 4rem);
   background: #fff9ef;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .about-header {
