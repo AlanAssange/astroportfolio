@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
 import profileRefactor from "../assets/images/profilerefactor.png"
-import diceDivider from "../assets/icons/dice.png";
+import Divider from "./ui/Divider";
 import "../styles/about.css";
 
 export default function AboutWindow() {
@@ -32,15 +32,7 @@ export default function AboutWindow() {
           </div>
         </div>
       </div>
-      <div className="about-separator">
-        <span className="line"></span>
-        <img
-          src={diceDivider.src}
-          alt="Divider icon"
-          className="separator-icon"
-        />
-        <span className="line"></span>
-      </div>
+      <Divider/>
       <div className="about-content">
         <h2>{t('aboutData.aboutTitle')}</h2>
         <p>{t('aboutData.aboutDesc')}</p>
@@ -56,15 +48,7 @@ export default function AboutWindow() {
           <li>{t('aboutData.swordThreeMaintain')} <a href='https://es.wikipedia.org/wiki/Zettelkasten' target="_blank">{t('aboutData.swordThreeZett')}</a> {t('aboutData.swordThreeContinue')}</li>
         </ul>
 
-        <div className="about-separator">
-          <span className="line"></span>
-          <img
-            src={diceDivider.src}
-            alt="Divider icon"
-            className="separator-icon"
-          />
-          <span className="line"></span>
-        </div>
+        <Divider/>
 
         <h2>{t('aboutData.educationTitle')}</h2>
         <blockquote className="quote">
@@ -82,15 +66,7 @@ export default function AboutWindow() {
           <p>{t('aboutData.thirdUni')}</p>
         </blockquote>
 
-        <div className="about-separator">
-          <span className="line"></span>
-          <img
-            src={diceDivider.src}
-            alt="Divider icon"
-            className="separator-icon"
-          />
-          <span className="line"></span>
-        </div>
+        <Divider/>
 
         <h2>{t('aboutData.languageTitle')}</h2>
 
