@@ -17,7 +17,7 @@ export const useStore = create<AppState>((set) => ({
   openWindows: [],
   focusedWindow: null,
   isAudioStarted: false,
-  isMuted: false,
+  isMuted: true,
 
   openWindow: (id) => set((state) => ({
     openWindows: state.openWindows.includes(id) ? state.openWindows : [...state.openWindows, id],
