@@ -38,13 +38,13 @@ export default function Shortcut({ id, label, icon, target, x = 20, y = 20 }: Sh
         const centerY = window.innerHeight / 2;
         
         const gapX = 95; 
-        const gapY = 100; 
+        const gapY = 130; 
 
         const mobilePositions: Record<string, { x: number, y: number }> = {
           "win-lab":     { x: centerX - gapX, y: centerY - gapY }, 
           "win-work":    { x: centerX + 5,    y: centerY - gapY },
-          "win-links":   { x: centerX - gapX, y: centerY + 5 },
-          "win-contact": { x: centerX + 5,    y: centerY + 33 },
+          "win-links":   { x: centerX - gapX, y: centerY + -29 },
+          "win-contact": { x: centerX + 5,    y: centerY + -2 },
         };
 
         setPos(mobilePositions[id] || { x, y });

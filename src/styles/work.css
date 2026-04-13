@@ -9,6 +9,25 @@
     overflow-x: hidden;
   }
 
+  .portfolio-container a{
+    color: #32084b;
+  }
+
+  .portfolio-container a:visited,
+  .portfolio-container a:active,
+  .portfolio-container a:hover {
+      color: #32084b;
+  }
+
+  .portfolio-banner .banner-link {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .portfolio-banner .banner-link:visited {
+    color: #ffffff;
+  }
+
   .portfolio-banner {
     background: url('../assets/images/castlewall.png');
     background-size: cover;
@@ -142,5 +161,17 @@
   @media (max-width: 768px) {
     .portfolio-grid {
       gap: 40px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .badges-container {
+      gap: 5px;
+    }
+  }
+
+  @media (max-width: 358px) {
+    .badges-container {
+      gap: 3px;
     }
   }
