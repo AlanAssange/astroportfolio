@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/cathwo.png"><meta name="generator" content="Astro v6.0.8"><title>ALAN JAVIER CANELLAS</title><style>@font-face{font-family:mezalia-regular;src:url(/_astro/mezalia-regular.DBYGqOKz.ttf) format("truetype");font-weight:400;font-style:normal;font-display:swap}body{margin:0;background-color:#000;font-family:mezalia-regular}
+</style>
+<link rel="stylesheet" href="/_astro/index@_@astro.DinK7j5m.css">
+<style>.shortcut{width:70px;text-align:center;position:absolute;user-select:none;cursor:pointer}.shortcut img{width:58px;image-rendering:pixelated;pointer-events:none}.shortcut span{display:block;margin-top:4px;font-size:12px;color:#fff;text-shadow:1px 1px 0 black}
+</style>
+<link rel="stylesheet" href="/_astro/Window.D3htBBkN.css">
+<style>.knight-container{position:absolute;bottom:-32px;right:-10px;width:450px;max-width:100vw;display:flex;flex-direction:column;align-items:center;overflow:visible}.piano-knight{width:100%;cursor:pointer;display:block}.music-notes{position:absolute;top:-30px;left:50%;transform:translate(-50%);width:150px;pointer-events:none;animation:floatNotes 3s ease-in-out infinite}@keyframes floatNotes{0%,to{transform:translate(-50%) translateY(0)}50%{transform:translate(-50%) translateY(-20px)}}@media(max-width:750px){.knight-container{width:360px}.music-notes{width:150px;top:-40px}}@media(max-height:750px){.knight-container{width:310px}.music-notes{width:150px;top:-40px}}@media(max-height:685px){.knight-container{width:280px}.music-notes{width:150px;top:-40px}}@media(max-height:617px){.knight-container{width:250px}.music-notes{width:150px;top:-40px}}
+</style></head> <body data-astro-cid-sckkx6r4>  <div class="desktop"> <div id="boot-loader" class="boot-screen"> <div class="terminal-loader"> <img class="loader-icon" src="cathedral.png"> </div> </div> <nav class="nav"> <div> <img id="langBtn" class="icons" src="https://hatscripts.github.io/circle-flags/flags/us.svg"> <img id="soundBtn" class="icons" src="https://unpkg.com/pixelarticons@1.8.1/svg/volume-x.svg" style="cursor: pointer;"> </div> <div id="date" class="nav-center"></div> <img id="powerBtn" class="icons" src="https://unpkg.com/pixelarticons@latest/svg/power.svg" style="cursor: pointer;"> </nav> <div id="powerModal" class="modal-overlay" style="display: none;"> <div class="modal-content fantasy-window"> <div class="modal-header"> <span id="t-system"></span> </div> <div class="modal-body"> <p id="t-status"></p> <p id="t-areusure"></p> </div> <div class="modal-actions"> <button id="btnYes" class="modal-btn fantasy-btn"></button> <button id="btnNo" class="modal-btn fantasy-btn"></button> </div> </div> </div> <script type="module" src="/_astro/NavBar.astro_astro_type_script_index_0_lang.Bz_0ptBg.js"></script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="2ngPiX" component-url="/_astro/Shortcuts.1arPqSq5.js" component-export="default" renderer-url="/_astro/client.LVp8RnhZ.js" props="{&quot;id&quot;:[0,&quot;win-lab&quot;],&quot;label&quot;:[0,&quot;shortcuts.about&quot;],&quot;icon&quot;:[0,&quot;/ballicon.png&quot;],&quot;target&quot;:[0,&quot;#win-lab&quot;],&quot;x&quot;:[0,52],&quot;y&quot;:[0,140]}" ssr client="only" opts="{&quot;name&quot;:&quot;Shortcut&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island><astro-island uid="hItk8" component-url="/_astro/Shortcuts.1arPqSq5.js" component-export="default" renderer-url="/_astro/client.LVp8RnhZ.js" props="{&quot;id&quot;:[0,&quot;win-links&quot;],&quot;label&quot;:[0,&quot;shortcuts.links&quot;],&quot;icon&quot;:[0,&quot;/linkicon.png&quot;],&quot;target&quot;:[0,&quot;#win-links&quot;],&quot;x&quot;:[0,52],&quot;y&quot;:[0,380]}" ssr client="only" opts="{&quot;name&quot;:&quot;Shortcut&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island><astro-island uid="Z1KntV" component-url="/_astro/Shortcuts.1arPqSq5.js" component-export="default" renderer-url="/_astro/client.LVp8RnhZ.js" props="{&quot;id&quot;:[0,&quot;win-work&quot;],&quot;label&quot;:[0,&quot;shortcuts.work&quot;],&quot;icon&quot;:[0,&quot;/shieldicon.png&quot;],&quot;target&quot;:[0,&quot;#win-work&quot;],&quot;x&quot;:[0,52],&quot;y&quot;:[0,260]}" ssr client="only" opts="{&quot;name&quot;:&quot;Shortcut&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island><astro-island uid="1040pv" component-url="/_astro/Shortcuts.1arPqSq5.js" component-export="default" renderer-url="/_astro/client.LVp8RnhZ.js" props="{&quot;id&quot;:[0,&quot;win-contact&quot;],&quot;label&quot;:[0,&quot;shortcuts.contact&quot;],&quot;icon&quot;:[0,&quot;/contacticon.png&quot;],&quot;target&quot;:[0,&quot;#win-contact&quot;],&quot;x&quot;:[0,52],&quot;y&quot;:[0,500]}" ssr client="only" opts="{&quot;name&quot;:&quot;Shortcut&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island> <astro-island uid="Z2l4OvK" component-url="/_astro/Window.-cU0Cyv0.js" component-export="default" renderer-url="/_astro/client.LVp8RnhZ.js" props="{&quot;id&quot;:[0,&quot;win-welcome&quot;],&quot;title&quot;:[0,&quot;welcome.title&quot;],&quot;defaultVisible&quot;:[0,true]}" ssr client="only" opts="{&quot;name&quot;:&quot;Window&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island><astro-island uid="Z1JHWXr" component-url="/_astro/Window.-cU0Cyv0.js" component-export="default" renderer-url="/_astro/client.LVp8RnhZ.js" props="{&quot;id&quot;:[0,&quot;win-lab&quot;],&quot;title&quot;:[0,&quot;shortcuts.about&quot;],&quot;defaultVisible&quot;:[0]}" ssr client="only" opts="{&quot;name&quot;:&quot;Window&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island><astro-island uid="21Ef81" component-url="/_astro/Window.-cU0Cyv0.js" component-export="default" renderer-url="/_astro/client.LVp8RnhZ.js" props="{&quot;id&quot;:[0,&quot;win-links&quot;],&quot;title&quot;:[0,&quot;shortcuts.links&quot;],&quot;defaultVisible&quot;:[0]}" ssr client="only" opts="{&quot;name&quot;:&quot;Window&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island><astro-island uid="1scwoa" component-url="/_astro/Window.-cU0Cyv0.js" component-export="default" renderer-url="/_astro/client.LVp8RnhZ.js" props="{&quot;id&quot;:[0,&quot;win-work&quot;],&quot;title&quot;:[0,&quot;shortcuts.work&quot;],&quot;defaultVisible&quot;:[0]}" ssr client="only" opts="{&quot;name&quot;:&quot;Window&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island><astro-island uid="1KG0iW" component-url="/_astro/Window.-cU0Cyv0.js" component-export="default" renderer-url="/_astro/client.LVp8RnhZ.js" props="{&quot;id&quot;:[0,&quot;win-contact&quot;],&quot;title&quot;:[0,&quot;shortcuts.contact&quot;],&quot;defaultVisible&quot;:[0]}" ssr client="only" opts="{&quot;name&quot;:&quot;Window&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island> <astro-island uid="Z23Y00c" component-url="/_astro/PianoKnight.fDL5_zuU.js" component-export="default" renderer-url="/_astro/client.LVp8RnhZ.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;PianoKnight&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island> </div> <script>
+  const loader = document.getElementById("boot-loader");
+  const terminalLoader = loader.querySelector(".terminal-loader");
+  const icon = terminalLoader.querySelector(".loader-icon");
+  const isLangSwitch = sessionStorage.getItem("isLangSwitch");
+
+  if (isLangSwitch === "true") {
+    if (loader) loader.classList.add("lang-mode");
+    sessionStorage.removeItem("isLangSwitch");
+
+    window.addEventListener("load", () => {
+      const delay = isLangSwitch === "true" ? 200 : 400;
+
+      setTimeout(() => {
+        if (loader) {
+          loader.classList.add("hidden");
+        }
+      }, delay);
+    });
+  } else {
+    loader.classList.add("booting-terminal");
+    if (icon) icon.remove();
+
+    const bootMessages = [
+      "Alan OS (Based on Debian stable) Kernel 6.1.0-18-amd64 on x86_64",
+      "",
+      "Loading initial ramdisk...",
+      "[ INFO ] Mounting API filesystems...",
+      "[ OK ] Starting udev Kernel Device Manager...",
+      "[ OK ] Reaching target Local File Systems (Pre)...",
+      "[ INFO ] Checking local filesystems...",
+      " /dev/nvme0n1p2: clean, 320/2048 files, 1.2G/8G blocks",
+      "[ OK ] Finished Checking local filesystems.",
+      "[ OK ] Reaching target Local File Systems.",
+      "[ STARTED ] Starting Astro Core Services...",
+      "[ OK ] Starting system logging service...",
+      "[ INFO ] Active: active (running) since " + new Date().toISOString(),
+      "[ OK ] Starting D-Bus Message Bus...",
+      "[ STARTED ] Loading Astro Desktop Assets...",
+      "[ INFO ] Gothic RPG background initialized.",
+      "[ INFO ] Loading components...",
+      "[ STARTED ] Initializing a tiny knight playing piano...",
+      "[ OK ] Started Piano Service.",
+      "[ OK ] Reached target Graphics Interface.",
+      "[ CREATED ] User session 'guest' initialized.",
+      "[ OK ] Astro Desktop Environment is Ready.",
+      "",
+      "Debian GNU/Linux 12 astro-pc tty1",
+      "astro-pc login: guest",
+      "Last login: " + new Date().toLocaleDateString(),
+      "Entering desktop...",
+      "...",
+    ];
+
+    let currentIndex = 0;
+
+    function parseStatusTags(msg) {
+      const regex = /\[ (.*?) \]/;
+      const match = msg.match(regex);
+
+      if (match) {
+        const tag = match[1];
+        const rest = msg.replace(match[0], "");
+        return `<span class="status-tag">[ ${tag} ]</span>${rest}`;
+      }
+      return msg;
+    }
+
+    function showNextBootLine() {
+      if (currentIndex < bootMessages.length) {
+        const line = document.createElement("p");
+        line.innerHTML = parseStatusTags(bootMessages[currentIndex]);
+        terminalLoader.appendChild(line);
+        terminalLoader.scrollTop = terminalLoader.scrollHeight;
+        const delay = Math.floor(Math.random() * 120 + 30);
+
+        currentIndex++;
+        setTimeout(showNextBootLine, delay);
+      } else {
+        setTimeout(() => {
+          if (loader) loader.classList.add("hidden");
+        }, 1000);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      showNextBootLine();
+    });
+  }
+</script> </body></html>

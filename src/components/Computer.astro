@@ -2,7 +2,7 @@
 import Shortcut from "./Shortcuts";
 import Window from "./Window";
 import "../styles/computer.css";
-import { windowsConfig } from "../configs/windows";
+import { windowsConfig, hasShortcut } from "../configs/windows";
 import NavBar from "../components/NavBar.astro";
 import PianoKnight from "../components/PianoKnight";
 ---
@@ -15,7 +15,7 @@ import PianoKnight from "../components/PianoKnight";
   </div>
   <NavBar />
   {
-    windowsConfig.map((win) => (
+    windowsConfig.filter(hasShortcut).map((win) => (
       <Shortcut
         id={win.id}
         label={win.label}
@@ -30,7 +30,7 @@ import PianoKnight from "../components/PianoKnight";
 
   {
     windowsConfig.map((win) => (
-      <Window id={win.id} title={win.title} client:only="react" />
+      <Window id={win.id} title={win.title} defaultVisible={win.defaultVisible} client:only="react" />
     ))
   }
   <PianoKnight client:only="react" />

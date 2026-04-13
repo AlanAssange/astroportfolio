@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { getNextZIndex } from "../utils/zIndexManager";
 import { windowsConfig } from "../configs/windows";
-import "../i18n/i18n";
+import "../i18n/i18n"; 
 import "../styles/window.css";
 
 type WindowProps = {
@@ -18,18 +18,30 @@ export default function Window({
 }: WindowProps) {
   const { t, i18n } = useTranslation();
   const [ready, setReady] = useState(false);
-  const [isVisible, setIsVisible] = useState(defaultVisible);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth <= 768 ? false : defaultVisible;
+    }
+    return defaultVisible;
+  });
+
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth <= 768;
+    }
+    return false;
+  });
   
   const windowRef = useRef<HTMLDivElement>(null);
   const titlebarRef = useRef<HTMLDivElement>(null);
   const dragOffset = useRef({ x: 0, y: 0 });
+  
   const windowData = windowsConfig.find(win => win.id === id);
   const ContentComponent = windowData?.Component;
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile(); // Check inicial
+    // Ya no hace falta el checkMobile() acá porque lo iniciamos en el useState
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
@@ -51,7 +63,7 @@ export default function Window({
     }
 
     const left = (window.innerWidth - win.offsetWidth) / 2;
-    const top = (window.innerHeight - win.offsetHeight) / 2;
+    const top = (window.innerHeight - win.offsetHeight) / 2 - 50; 
 
     win.style.left = `${Math.max(0, left)}px`;
     win.style.top = `${Math.max(0, top)}px`;
@@ -67,13 +79,24 @@ export default function Window({
   }, [i18n]);
 
   useEffect(() => {
+    if (defaultVisible && ready && !isMobile) {
+      const timer = setTimeout(() => {
+        centerWindow();
+        bringToFront();
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [defaultVisible, ready, centerWindow, bringToFront, isMobile]);
+
+  useEffect(() => {
     const openHandler = (e: Event) => {
       const customEvent = e as CustomEvent<string>;
       if (customEvent.detail === id) {
+        setIsVisible(true);
         bringToFront();
         requestAnimationFrame(() => {
           centerWindow();
-          setIsVisible(true);
         });
       }
     };
@@ -137,6 +160,8 @@ export default function Window({
       document.removeEventListener("pointerup", onPointerUp);
     };
   }, [ready, isMobile, bringToFront]);
+
+  if (!ready) return null;
 
   return (
     <div

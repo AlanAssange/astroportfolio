@@ -1,5 +1,11 @@
 const es = {
 
+    welcome:{
+        title: "Bienvenido",
+        welcome: "¡BIENVENIDO!",
+        doubleClick: "Hacé doble click en los accesos directos para navegar por cada una de las secciones.",
+        singleClick: "O un click en el resto de los interactuables."
+    },
     aboutHeader: {
         name: "Alan Javier Cañellas",
         class: "Clase:",

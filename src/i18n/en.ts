@@ -1,5 +1,11 @@
 const en = {
-
+    
+    welcome:{
+        title: "Welcome",
+        welcome: "WELCOME ABOARD!",
+        doubleClick: "To get started, double-click the shortcuts to explore each section.",
+        singleClick: "Single-click for the other interactive elements."
+    },
     aboutHeader:{
         name: "Alan Javier Cañellas",
         class: "Class:",

@@ -1,0 +1,40 @@
+.welcome-container {
+    text-align: center;
+    padding: 10px 5px;
+}
+
+.welcome-title {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.welcome-text-wrapper {
+    max-width: 400px;
+    margin: 0 auto 25px auto;
+    line-height: 1.4;
+}
+
+.welcome-instruction {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    color: #3a3a3a;
+}
+
+.welcome-instruction:last-child {
+    margin-bottom: 0;
+}
+
+.welcome-image-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-gif {
+    max-width: 100%;
+    height: 150px;
+    object-fit: contain;
+    image-rendering: pixelated; 
+}
