@@ -45,7 +45,7 @@ export default function AboutWindow() {
           <li>
             {t('aboutData.swordTwo')}
           </li>
-          <li>{t('aboutData.swordThreeMaintain')} <a href='https://es.wikipedia.org/wiki/Zettelkasten' target="_blank">{t('aboutData.swordThreeZett')}</a> {t('aboutData.swordThreeContinue')}</li>
+          <li>{t('aboutData.swordThreeMaintain')} <a href='https://es.wikipedia.org/wiki/Zettelkasten' target="_blank" className="link">{t('aboutData.swordThreeZett')}</a> {t('aboutData.swordThreeContinue')}</li>
         </ul>
 
         <Divider/>
