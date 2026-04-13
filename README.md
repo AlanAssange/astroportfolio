@@ -44,9 +44,9 @@ Se diseñó una lógica de comportamiento dual:
 - **Web**: Experiencia de ventanas flotantes, arrastrables y foco dinámico.
 - **Mobile**: Interfaz adaptada con transiciones suaves y posicionamiento fijo.
 
-## 🚧 Estado
+## Estado
 
-🟡 **En desarrollo activo**
+ **Finalizado**
 
 El proyecto se encuentra finalizado al día de la fecha!!!
 
