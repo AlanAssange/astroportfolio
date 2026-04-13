@@ -1,9 +1,11 @@
 .contact-container {
-  max-width: 520px;
-  margin: 0 auto;
+  width: 100%; 
+  max-width: 500px;
+  margin: 0; 
   text-align: center;
   padding: 40px 20px;
   background: #fff9ef;
+  box-sizing: border-box;
 }
 
 .contact-title {

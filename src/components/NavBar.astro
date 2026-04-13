@@ -44,12 +44,7 @@ import "../styles/navbar.css";
 
 <script>
   import i18next from "../i18n/i18n";
-
-  declare global {
-    interface Window {
-      knightAudio?: HTMLAudioElement;
-    }
-  }
+  import { useStore } from "../utils/useStore";
 
   document.addEventListener("DOMContentLoaded", async () => {
     const langBtn = document.getElementById("langBtn") as HTMLImageElement;
@@ -108,28 +103,26 @@ import "../styles/navbar.css";
       updateDate();
     });
 
-    let audioStarted = false;
-    let isMuted = true;
-
-    const updateSoundIcon = () => {
+    const updateSoundIcon = (isMuted: boolean) => {
       soundBtn.src = isMuted
         ? "https://unpkg.com/pixelarticons@1.8.1/svg/volume-x.svg"
         : "https://unpkg.com/pixelarticons@1.8.1/svg/volume-2.svg";
     };
 
-    window.addEventListener("syncKnightAudio", ((e: CustomEvent<{isMuted: boolean, started: boolean}>) => {
-      audioStarted = e.detail.started;
-      isMuted = e.detail.isMuted;
-      updateSoundIcon();
-    }) as EventListener);
+    updateSoundIcon(useStore.getState().isMuted);
+
+    useStore.subscribe((state) => {
+      updateSoundIcon(state.isMuted);
+    });
 
     soundBtn.addEventListener("click", () => {
-      isMuted = !isMuted;
-      if (window.knightAudio) window.knightAudio.muted = isMuted;
-      updateSoundIcon();
-      window.dispatchEvent(new CustomEvent("syncKnightAudio", {
-        detail: { isMuted, started: audioStarted }
-      }));
+      const state = useStore.getState();
+      
+      if (!state.isAudioStarted) {
+        state.startAudio();
+      } else {
+        state.toggleAudio();
+      }
     });
 
     powerBtn.addEventListener("click", () => powerModal.style.display = "flex");

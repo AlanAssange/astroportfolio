@@ -1,35 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "../styles/end.css";
-import i18next from "../i18n/i18n";
+import "../i18n/i18n";
 import { useTranslation } from 'react-i18next';
 
 export default function End() {
   const [isShuttingDown, setIsShuttingDown] = useState(true);
-  const [isReady, setIsReady] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-
-    const init = async () => {
-      const lang = localStorage.getItem("lang") || "en";
+    const savedLang = localStorage.getItem("lang");
+    if (savedLang && i18n.language !== savedLang) {
+      i18n.changeLanguage(savedLang);
+    }
+    
+    const timer = setTimeout(() => {
+      setIsShuttingDown(false);
+    }, 2000);
   
-      if (i18next.language !== lang) {
-        await i18next.changeLanguage(lang);
-      }
-  
-      setIsReady(true);
-  
-      timer = setTimeout(() => {
-        setIsShuttingDown(false);
-      }, 2000);
-    };
-  
-    init();
-  
-    return () => {
-      if (timer) clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   return (

@@ -1,8 +1,8 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, {useEffect,useLayoutEffect,useState,useCallback} from "react";
 import { useTranslation } from "react-i18next";
-import { getNextZIndex } from "../utils/zIndexManager";
+import { useStore } from "../utils/useStore";
+import { useDraggable } from "../utils/useDraggable";
 import { windowsConfig } from "../configs/windows";
-import "../i18n/i18n"; 
 import "../styles/window.css";
 
 type WindowProps = {
@@ -16,41 +16,26 @@ export default function Window({
   title,
   defaultVisible = false,
 }: WindowProps) {
-  const { t, i18n } = useTranslation();
-  const [ready, setReady] = useState(false);
-  const [isVisible, setIsVisible] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth <= 768 ? false : defaultVisible;
-    }
-    return defaultVisible;
-  });
-
+  const { t } = useTranslation();
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== "undefined") {
       return window.innerWidth <= 768;
     }
     return false;
   });
-  
-  const windowRef = useRef<HTMLDivElement>(null);
-  const titlebarRef = useRef<HTMLDivElement>(null);
-  const dragOffset = useRef({ x: 0, y: 0 });
-  
-  const windowData = windowsConfig.find(win => win.id === id);
+  const [isPositioned, setIsPositioned] = useState(false);
+  const isOpen = useStore((state) => state.openWindows.includes(id));
+  const isFocused = useStore((state) => state.focusedWindow === id);
+  const closeWindow = useStore((state) => state.closeWindow);
+  const setFocusedWindow = useStore((state) => state.setFocusedWindow);
+  const openWindow = useStore((state) => state.openWindow);
+
+  const { windowRef, titlebarRef, onPointerDown } = useDraggable({
+    id,
+    isMobile,
+  });
+  const windowData = windowsConfig.find((win) => win.id === id);
   const ContentComponent = windowData?.Component;
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    // Ya no hace falta el checkMobile() acá porque lo iniciamos en el useState
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const bringToFront = useCallback(() => {
-    if (windowRef.current) {
-      windowRef.current.style.zIndex = String(getNextZIndex());
-    }
-  }, []);
 
   const centerWindow = useCallback(() => {
     const win = windowRef.current;
@@ -59,134 +44,87 @@ export default function Window({
     if (window.innerWidth <= 768) {
       win.style.left = "";
       win.style.top = "";
+      setIsPositioned(true);
       return;
     }
 
-    const left = (window.innerWidth - win.offsetWidth) / 2;
-    const top = (window.innerHeight - win.offsetHeight) / 2 - 50; 
+    const width = win.offsetWidth;
+    const height = win.offsetHeight;
 
-    win.style.left = `${Math.max(0, left)}px`;
-    win.style.top = `${Math.max(0, top)}px`;
+    if (width > 0 && height > 0) {
+      const left = (window.innerWidth - width) / 2;
+      const top = (window.innerHeight - height) / 2;
+      win.style.left = `${Math.max(0, left)}px`;
+      win.style.top = `${Math.max(0, top)}px`;
+      setIsPositioned(true);
+    }
+  }, [windowRef]);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   useEffect(() => {
-    const saved = localStorage.getItem('lang') || 'en';
-    if (i18n.language !== saved) {
-      i18n.changeLanguage(saved).then(() => setReady(true));
+    if (defaultVisible && !isMobile) {
+      openWindow(id);
+    }
+  }, [defaultVisible, isMobile, id, openWindow]);
+
+  useLayoutEffect(() => {
+    if (isOpen) {
+      centerWindow();
+      const timeout = setTimeout(centerWindow, 30);
+      return () => clearTimeout(timeout);
     } else {
-      setReady(true);
+      setIsPositioned(false);
     }
-  }, [i18n]);
+  }, [isOpen, centerWindow]);
 
-  useEffect(() => {
-    if (defaultVisible && ready && !isMobile) {
-      const timer = setTimeout(() => {
-        centerWindow();
-        bringToFront();
-      }, 100);
-
-      return () => clearTimeout(timer);
-    }
-  }, [defaultVisible, ready, centerWindow, bringToFront, isMobile]);
-
-  useEffect(() => {
-    const openHandler = (e: Event) => {
-      const customEvent = e as CustomEvent<string>;
-      if (customEvent.detail === id) {
-        setIsVisible(true);
-        bringToFront();
-        requestAnimationFrame(() => {
-          centerWindow();
-        });
-      }
-    };
-  
-    window.addEventListener("open-window", openHandler);
-    return () => {
-      window.removeEventListener("open-window", openHandler);
-    };
-  }, [id, bringToFront, centerWindow]);
-
-  useEffect(() => {
-    if (!ready || isMobile) return; 
-
-    const titlebar = titlebarRef.current;
-    const win = windowRef.current;
-    if (!titlebar || !win) return;
-
-    const onPointerDown = (e: PointerEvent) => {
-      if ((e.target as HTMLElement).closest('.controls')) return; 
-      
-      bringToFront();
-      const rect = win.getBoundingClientRect();
-
-      dragOffset.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      };
-
-      titlebar.setPointerCapture(e.pointerId);
-    };
-
-    const onPointerMove = (e: PointerEvent) => {
-      if (titlebar.hasPointerCapture(e.pointerId)) {
-        const newLeft = e.clientX - dragOffset.current.x;
-        const newTop = e.clientY - dragOffset.current.y;
-
-        const maxLeft = window.innerWidth - win.offsetWidth;
-        const maxTop = window.innerHeight - win.offsetHeight;
-
-        const clampedLeft = Math.min(Math.max(0, newLeft), maxLeft);
-        const clampedTop = Math.min(Math.max(0, newTop), maxTop);
-
-        win.style.left = `${clampedLeft}px`;
-        win.style.top = `${clampedTop}px`;
-      }
-    };
-
-    const onPointerUp = (e: PointerEvent) => {
-      try {
-        titlebar.releasePointerCapture(e.pointerId);
-      } catch {}
-    };
-
-    titlebar.addEventListener("pointerdown", onPointerDown);
-    document.addEventListener("pointermove", onPointerMove);
-    document.addEventListener("pointerup", onPointerUp);
-
-    return () => {
-      titlebar.removeEventListener("pointerdown", onPointerDown);
-      document.removeEventListener("pointermove", onPointerMove);
-      document.removeEventListener("pointerup", onPointerUp);
-    };
-  }, [ready, isMobile, bringToFront]);
-
-  if (!ready) return null;
+  const windowClasses = [
+    "window",
+    isFocused ? "focused" : "",
+    isPositioned ? "positioned" : "",
+    !isOpen ? "hidden" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div
       ref={windowRef}
       id={id}
-      className={`window ${isVisible ? "" : "hidden"}`}
-      role="dialog"
-      aria-label={t(title)}
-      onPointerDown={bringToFront}
+      className={windowClasses}
+      onPointerDown={() => setFocusedWindow(id)}
+      style={{
+        position: isMobile ? undefined : "absolute",
+        left: isMobile
+          ? undefined
+          : isPositioned
+            ? windowRef.current?.style.left
+            : "-9999px",
+        zIndex: isFocused ? 100 : 10,
+        opacity: isMobile ? undefined : isPositioned ? 1 : 0,
+        visibility: isMobile ? undefined : isPositioned ? "visible" : "hidden",
+        transition: isMobile
+          ? undefined
+          : isPositioned
+            ? "opacity 0.15s ease-in"
+            : "none",
+      }}
     >
-      <div ref={titlebarRef} className="titlebar">
-        <span className="title-text">{t(title)}</span> 
-        
+      <div ref={titlebarRef} className="titlebar" onPointerDown={onPointerDown}>
+        <span className="title-text">{t(title)}</span>
         <div className="controls">
-          <button 
-            className="close-btn" 
-            aria-label={t("cerrar")}
-            onClick={() => setIsVisible(false)}
-          >
+          <button className="close-btn" onClick={() => closeWindow(id)}>
             [X]
           </button>
         </div>
       </div>
       <div className="content">
-        {ContentComponent ? <ContentComponent /> : <p>{t("cargando", "Cargando...")}</p>}
+        {ContentComponent ? <ContentComponent /> : <p>{t("...")}</p>}
       </div>
     </div>
   );
